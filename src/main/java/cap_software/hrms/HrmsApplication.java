@@ -18,22 +18,10 @@ import javax.persistence.*;
 @Component
 @SpringBootApplication
 public class HrmsApplication {
-    @PersistenceContext
-    EntityManager entityManager;
+
     public static void main(String[] args) {
         SpringApplication.run(HrmsApplication.class, args);
 
-
-
-
-/*
-      EntityTransaction transaction= entityManager.getTransaction();
-
-      transaction.begin();
-
-
-      transaction.commit();
-*/
 
 
 
