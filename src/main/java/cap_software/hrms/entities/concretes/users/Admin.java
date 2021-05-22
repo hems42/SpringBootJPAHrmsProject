@@ -1,4 +1,6 @@
 package cap_software.hrms.entities.concretes.users;
+import cap_software.hrms.entities.concretes.contacts.PersonalInformation;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -10,5 +12,7 @@ public class Admin implements Serializable {
    @OneToOne()
    @JoinColumn(name = "UserId",unique = true,nullable = false)
     private User  userId;
+
+
 
 }

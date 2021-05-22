@@ -1,4 +1,5 @@
 package cap_software.hrms.entities.concretes.users;
+import cap_software.hrms.entities.concretes.contacts.Adress;
 import cap_software.hrms.entities.concretes.contacts.PersonalInformation;
 
 import javax.persistence.*;
@@ -14,7 +15,9 @@ public class JopSeeker implements Serializable {
     private User  userId;
 
 
-    @OneToOne
+    @OneToOne(mappedBy = "user")
     private PersonalInformation personalInformation;
+
+
 
 }
