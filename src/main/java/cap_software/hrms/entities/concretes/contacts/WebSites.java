@@ -15,4 +15,8 @@ public class WebSites {
     @ManyToOne
     @JoinColumn(name = "UserId",nullable = false,unique = true)
     private User user;
+
+
+    @Column(name="WebSite",length = 50,nullable = false,unique = true)
+    private String webSite;
 }
