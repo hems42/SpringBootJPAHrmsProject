@@ -1,4 +1,4 @@
-package cap_software.hrms.core.results;
+package cap_software.hrms.core.utilities.results;
 
 public class DataResult<T> extends Result {
 

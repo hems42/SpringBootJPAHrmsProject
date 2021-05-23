@@ -1,22 +1,26 @@
 package cap_software.hrms;
 
+
+import cap_software.hrms.bussiness.concretes.UserManager;
+import cap_software.hrms.entities.concretes.users.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.engine.spi.SessionFactoryImplementor;
-import org.hibernate.engine.spi.SessionImplementor;
-import org.hibernate.property.access.spi.PropertyAccess;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.hibernate.cfg.Configuration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.jpa.repository.support.EntityManagerBeanDefinitionRegistrarPostProcessor;
-import org.springframework.data.jpa.util.BeanDefinitionUtils;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.mapping.JpaPersistentEntity;
+import org.springframework.orm.hibernate5.HibernateOperations;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
 
-@Component
+
 @SpringBootApplication
+@EnableSwagger2
 public class HrmsApplication {
 
     public static void main(String[] args) {
@@ -25,8 +29,23 @@ public class HrmsApplication {
 
 
 
+
+
+
+
     }
 
+
+    @Bean
+    public Docket api() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("cap_software.hrms"))
+                .build();
+    }
+
+}
+/*
     @Component
     public class MyFancyComponent {
         @PersistenceContext
@@ -42,6 +61,4 @@ public class HrmsApplication {
             final SessionFactoryImplementor sfi = entityManager
                     .unwrap( SessionImplementor.class ).getFactory();
         }
-    }
-
-}
+    }*/

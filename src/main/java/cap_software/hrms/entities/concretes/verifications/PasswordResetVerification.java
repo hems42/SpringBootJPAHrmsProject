@@ -1,5 +1,4 @@
 package cap_software.hrms.entities.concretes.verifications;
-
 import cap_software.hrms.entities.concretes.users.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,8 +11,8 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @Entity
-@Table(name="EmailVerications")
-public class EmailVerification {
+@Table(name="PasswordResetVerications")
+public class PasswordResetVerification {
 
     @Transient
     private final int EXPIRY_DATE=60*24;  // geçerlilik süresi olarak kullanıcaz....
@@ -46,9 +45,16 @@ public class EmailVerification {
     private Date expiryDate;
 
 
-    public EmailVerification()
+    public PasswordResetVerification()
     {
-       this.expiryDate=calculateExpiryDate(EXPIRY_DATE);
+        expiryDate=calculateExpiryDate(EXPIRY_DATE);
+    }
+
+    public PasswordResetVerification(String token, User user)
+    {
+        this.token=token;
+        this.user=user;
+        this.expiryDate=calculateExpiryDate(EXPIRY_DATE);
     }
 
 
@@ -62,5 +68,6 @@ public class EmailVerification {
 
         return new Date(calender.getTime().getTime());
     }
+
 
 }

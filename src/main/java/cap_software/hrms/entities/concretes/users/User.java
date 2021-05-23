@@ -3,8 +3,16 @@ package cap_software.hrms.entities.concretes.users;
 
 
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import java.util.Date;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="Users")
 public class User {
@@ -29,6 +37,17 @@ public class User {
     private String password;
 
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "AddDate",updatable = false)
+    private Date addedDate;
+
+
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "UpdateDate",updatable = true,insertable = false)
+    private Date updateDate;
+
+
     @OneToOne(mappedBy = "userId")
     private Admin admin;
 
@@ -39,45 +58,5 @@ public class User {
     @OneToOne(mappedBy = "userId")
     private Emplooyer emplooyer;
 
-    public User() {
-    }
 
-    public User(int userNumber, String email, String password) {
-        this.userNumber = userNumber;
-        this.email = email;
-        this.password = password;
-    }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getUserNumber() {
-        return userNumber;
-    }
-
-    public void setUserNumber(int userNumber) {
-        this.userNumber = userNumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
