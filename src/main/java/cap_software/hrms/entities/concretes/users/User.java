@@ -15,7 +15,6 @@ import java.util.Date;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name="Users")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -24,7 +23,6 @@ public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="UserId")
-    @FieldNameConstants.Exclude
     private int id;
 
 
@@ -52,6 +50,13 @@ public abstract class User {
     @Column(name = "UpdateDate",updatable = true,insertable = false)
     private Date updateDate;
 
+    public User()
+    {
+        Date date= new Date();
+
+        this.updateDate=date;
+        this.addedDate=date;
+    }
 
 
 }

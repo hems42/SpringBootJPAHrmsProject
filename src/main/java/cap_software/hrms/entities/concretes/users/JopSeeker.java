@@ -15,7 +15,12 @@ import java.util.List;
 public class JopSeeker extends User implements Serializable  {
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "PersonalInformationId")
     private PersonalInformation personalInformation;
+
+    @ElementCollection
+    @CollectionTable(name = "deneme_user",joinColumns = @JoinColumn(name = "UserId"))
+    private  List<String> deneme;
 
    /* @OneToOne()
     @JoinColumn(name = "UserId",unique = true,nullable = false)

@@ -7,6 +7,7 @@ import cap_software.hrms.entities.concretes.users.User;
 import cap_software.hrms.entities.concretes.utils.Sex;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.annotation.Priority;
 import javax.persistence.*;
@@ -17,6 +18,7 @@ import java.util.Map;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="PersonelInformations")
 public class PersonalInformation implements Serializable {
@@ -25,9 +27,6 @@ public class PersonalInformation implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  int id;
 
-   /* @OneToOne
-    @JoinColumn(name = "UserId",unique = true,nullable = false)
-    private User user;*/
 
     @Column(name="Name", length = 50, nullable = false)
     private  String name;
@@ -48,55 +47,8 @@ public class PersonalInformation implements Serializable {
     private String sex;
 
 
-    public PersonalInformation() {
-    }
 
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getNationalIdentityNumber() {
-        return nationalIdentityNumber;
-    }
-
-    public void setNationalIdentityNumber(String nationalIdentityNumber) {
-        this.nationalIdentityNumber = nationalIdentityNumber;
-    }
-
-    public Date getBirthDay() {
-        return birthDay;
-    }
-
-    public void setBirthDay(Date birthDay) {
-        this.birthDay = birthDay;
-    }
-
-    public String getSex() {
-        return sex;
-    }
 
     public void setSex(Sex sex) {
         this.sex = sex.toString();

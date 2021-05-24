@@ -1,14 +1,13 @@
 package cap_software.hrms.entities.concretes.contacts;
 
 import cap_software.hrms.entities.concretes.users.User;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Data
-
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="Adresses")
 public class Adress {
@@ -17,13 +16,7 @@ public class Adress {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "UserId",  nullable = false)
-    private User user;
 
-
-    @Getter
-    @Setter
     private String city;
 
     private String  district;

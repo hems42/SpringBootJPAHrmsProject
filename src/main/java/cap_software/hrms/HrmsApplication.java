@@ -17,6 +17,8 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 
 @SpringBootApplication
@@ -27,8 +29,39 @@ public class HrmsApplication {
         SpringApplication.run(HrmsApplication.class, args);
 
 
+     //   EntityManagerFactory factory= Persistence.createEntityManagerFactory("default");
 
 
+
+        /*
+        *
+        * @RunWith(SpringRunner.class)
+@ContextConfiguration(classes= Application.class)
+@DataJpaTest
+@ActiveProfiles("test")
+public class UserServicesTests {
+
+@Autowired
+private TestEntityManager testEntityManager;
+
+@Autowired
+private UserRepository userRepository;
+
+@Test
+public void oops() {
+    User user = new User();
+    user.setUsername("Toshko");
+    //EMAIL IS REQUIRED:
+    //user.setEmail("OPS");
+    this.testEntityManager.persist(user);
+
+    //HERE COMES TE EXCEPTION BECAUSE THE EMAIL FIELD IN TE DATABASE IS REQUIRED :
+    this.userRepository.findUserByUsername("Toshko");
+
+    System.out.println();
+}
+}
+        * */
 
 
 

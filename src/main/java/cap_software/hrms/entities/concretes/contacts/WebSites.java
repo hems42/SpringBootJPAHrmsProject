@@ -12,9 +12,6 @@ public class WebSites {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "UserId",nullable = false,unique = true)
-    private User user;
 
 
     @Column(name="WebSite",length = 50,nullable = false,unique = true)
