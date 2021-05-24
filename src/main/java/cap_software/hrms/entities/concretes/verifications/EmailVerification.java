@@ -3,7 +3,6 @@ package cap_software.hrms.entities.concretes.verifications;
 import cap_software.hrms.entities.concretes.users.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
 import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Date;

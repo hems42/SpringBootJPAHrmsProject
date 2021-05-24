@@ -5,6 +5,8 @@ import cap_software.hrms.entities.concretes.users.Admin;
 import cap_software.hrms.entities.concretes.users.JopSeeker;
 import cap_software.hrms.entities.concretes.users.User;
 import cap_software.hrms.entities.concretes.utils.Sex;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 import javax.annotation.Priority;
 import javax.persistence.*;
@@ -13,6 +15,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+@Data
+@AllArgsConstructor
 @Entity
 @Table(name="PersonelInformations")
 public class PersonalInformation implements Serializable {
@@ -21,9 +25,9 @@ public class PersonalInformation implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  int id;
 
-    @OneToOne
+   /* @OneToOne
     @JoinColumn(name = "UserId",unique = true,nullable = false)
-    private User user;
+    private User user;*/
 
     @Column(name="Name", length = 50, nullable = false)
     private  String name;
@@ -47,14 +51,6 @@ public class PersonalInformation implements Serializable {
     public PersonalInformation() {
     }
 
-    public PersonalInformation(User user, String name, String surname, String nationalIdentityNumber, Date birthDay, String sex) {
-        this.user = user;
-        this.name = name;
-        this.surname = surname;
-        this.nationalIdentityNumber = nationalIdentityNumber;
-        this.birthDay = birthDay;
-        this.sex = sex;
-    }
 
 
     public int getId() {
@@ -65,13 +61,6 @@ public class PersonalInformation implements Serializable {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public String getName() {
         return name;

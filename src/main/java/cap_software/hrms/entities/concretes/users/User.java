@@ -3,29 +3,34 @@ package cap_software.hrms.entities.concretes.users;
 
 
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.FieldNameConstants;
+
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="Users")
-public class User {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="UserId")
+    @FieldNameConstants.Exclude
     private int id;
 
 
 
 
-    @Column(name="UserNumber", nullable = false,unique = true,length = 12)
+    @Column(name="UserNumber", nullable = false,unique = true,length =10)
     private int userNumber;
 
 
@@ -47,16 +52,6 @@ public class User {
     @Column(name = "UpdateDate",updatable = true,insertable = false)
     private Date updateDate;
 
-
-    @OneToOne(mappedBy = "userId")
-    private Admin admin;
-
-
-    @OneToOne(mappedBy = "userId")
-    private JopSeeker jobSeeker;
-
-    @OneToOne(mappedBy = "userId")
-    private Emplooyer emplooyer;
 
 
 }
