@@ -1,4 +1,4 @@
-package cap_software.hrms.dataaccess.abstracts;
+package cap_software.hrms.dataAccess.abstracts;
 
 import cap_software.hrms.entities.concretes.users.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;

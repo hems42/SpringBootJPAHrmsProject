@@ -1,12 +1,14 @@
 package cap_software.hrms.entities.concretes.users;
-import cap_software.hrms.entities.concretes.contacts.Adress;
-import cap_software.hrms.entities.concretes.contacts.PersonalInformation;
-import cap_software.hrms.entities.concretes.contacts.PhoneNumber;
-import lombok.Data;
 
+import cap_software.hrms.entities.concretes.contacts.PersonalInformation;
+
+import cap_software.hrms.entities.concretes.utils.AuthParametres;
+import cap_software.hrms.entities.concretes.verifications.EmailVerification;
+import io.swagger.models.properties.EmailProperty;
+import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+
 
 @Data
 @Entity
@@ -14,26 +16,17 @@ import java.util.List;
 @PrimaryKeyJoinColumn(name="UserId", referencedColumnName="UserId")
 public class JopSeeker extends User implements Serializable  {
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "PersonalInformationId")
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "PersonalInformationId",unique = true,nullable = false)
     private PersonalInformation personalInformation;
 
-    @ElementCollection
-    @CollectionTable(name = "deneme_user",joinColumns = @JoinColumn(name = "UserId"))
-    private  List<String> deneme;
+    @Embedded
+    private AuthParametres authParametres;
 
-   /* @OneToOne()
-    @JoinColumn(name = "UserId",unique = true,nullable = false)
-    private User  userId;
-
+    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @JoinColumn(name="EmailVeriyId",unique = true,nullable = false)
+    private EmailVerification emailVerification;
 
 
 
-
-    @OneToMany(mappedBy = "user")
-    private List<Adress> adresses;
-
-    @OneToMany(mappedBy = "user")
-    private  List<PhoneNumber> phoneNumbers;
-*/
 }

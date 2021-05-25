@@ -1,7 +1,7 @@
 package cap_software.hrms.bussiness.concretes;
 
 import cap_software.hrms.bussiness.abstracts.JopSeekerService;
-import cap_software.hrms.dataaccess.abstracts.JopSeekerDao;
+import cap_software.hrms.dataAccess.abstracts.JopSeekerDao;
 import cap_software.hrms.entities.concretes.users.JopSeeker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

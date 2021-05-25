@@ -1,7 +1,7 @@
 package cap_software.hrms.bussiness.concretes;
 
 import cap_software.hrms.bussiness.abstracts.EmplooyerService;
-import cap_software.hrms.dataaccess.abstracts.EmplooyerDao;
+import cap_software.hrms.dataAccess.abstracts.EmplooyerDao;
 import cap_software.hrms.entities.concretes.users.Emplooyer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

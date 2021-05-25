@@ -1,9 +1,12 @@
 package cap_software.hrms.entities.concretes;
 
-import cap_software.hrms.entities.concretes.users.User;
+import cap_software.hrms.entities.concretes.users.Emplooyer;
+import cap_software.hrms.entities.concretes.utils.DateParametres;
+import lombok.Data;
 
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name = "Companies")
 public class Company {
@@ -14,5 +17,8 @@ public class Company {
 
     @OneToOne
     @JoinColumn(name = "ownerId")
-    private User user;
+    private Emplooyer emplooyer;
+
+    @Embedded
+    DateParametres dataParametres;
 }

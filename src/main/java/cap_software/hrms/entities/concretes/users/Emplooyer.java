@@ -1,10 +1,16 @@
 package cap_software.hrms.entities.concretes.users;
+import cap_software.hrms.entities.concretes.contacts.PhoneNumber;
+import cap_software.hrms.entities.concretes.contacts.WebSite;
+import cap_software.hrms.entities.concretes.utils.AuthParametres;
+import cap_software.hrms.entities.concretes.verifications.AdminVerifications;
+import cap_software.hrms.entities.concretes.verifications.EmailVerification;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -16,13 +22,40 @@ import java.util.List;
 public class Emplooyer extends User implements  Serializable{
 
 
-    @ElementCollection
-    @CollectionTable(name = "website_emplooyer",joinColumns = @JoinColumn(name = "UserId"))
-    private List<String> websites;
+
+    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @JoinTable(name = "emplooyers_web_sites")
+    private List<WebSite> webSites= new ArrayList<>();
 
 
-    @ElementCollection
-    @CollectionTable(name = "deneme_user",joinColumns = @JoinColumn(name = "UserId"))
-    private List<String> deneme;
+    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @JoinTable(name = "emplooyers_phone_numbers")
+    private List<PhoneNumber> phoneNumbers= new ArrayList<>();
+
+    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @JoinColumn(name="EmailVerifyId",unique = true,nullable = false)
+    private EmailVerification emailVerification;
+
+    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @JoinColumn(name="AdminVerifyId",unique = true,nullable = false)
+    private AdminVerifications adminVerifications;
+
+
+
+    @Embedded
+    private AuthParametres authParametres;
+
+    public void addWebSite(WebSite webSite)
+    {
+        this.webSites.add(webSite);
+    }
+
+
+    public void addPhoneNumber(PhoneNumber phoneNumber)
+    {
+        this.phoneNumbers.add(phoneNumber);
+    }
+
+
 
 }

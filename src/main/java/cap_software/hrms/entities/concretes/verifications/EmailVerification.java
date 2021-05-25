@@ -1,6 +1,7 @@
 package cap_software.hrms.entities.concretes.verifications;
 
 import cap_software.hrms.entities.concretes.users.User;
+import cap_software.hrms.entities.concretes.utils.DateParametres;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import javax.persistence.*;
@@ -22,20 +23,9 @@ public class EmailVerification {
     @Column(name="PrivilageId")
     private int id;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "AddDate",updatable = false)
-    private Date addedDate;
+    @Embedded
+    private DateParametres dateParametres;
 
-
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "UpdateDate",updatable = true,insertable = false)
-    private Date updateDate;
-
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="UserId",unique = true,nullable = false,updatable = false,insertable = true )
-    private User user;
 
     @Column(name="Token",length = 200,nullable = false)
     private String token;

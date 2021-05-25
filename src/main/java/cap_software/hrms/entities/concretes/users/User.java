@@ -4,9 +4,8 @@ package cap_software.hrms.entities.concretes.users;
 
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import cap_software.hrms.entities.concretes.utils.DateParametres;
+import lombok.*;
 import lombok.experimental.FieldNameConstants;
 
 
@@ -20,6 +19,10 @@ import java.util.Date;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User {
 
+
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="UserId")
@@ -28,35 +31,48 @@ public abstract class User {
 
 
 
-    @Column(name="UserNumber", nullable = false,unique = true,length =10)
-    private int userNumber;
+
+
+
+    @GeneratedValue
+    @Column(name="UserNumber", nullable = false,unique = true,length =10,insertable = true, updatable = false)
+    private String  userNumber;
 
 
     @Column(name="Email", nullable = false,unique = true,length = 50)
     private String email;
 
 
+
     @Column(name="Password", nullable = false,length = 250)
     private String password;
 
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "AddDate",updatable = false)
-    private Date addedDate;
+
+    @Transient
+    private String matchedPassword;
 
 
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "UpdateDate",updatable = true,insertable = false)
-    private Date updateDate;
+    @Embedded
+    private DateParametres dateParametres;
 
-    public User()
-    {
-        Date date= new Date();
 
-        this.updateDate=date;
-        this.addedDate=date;
+    public User() {
+        if(getClass()==JopSeeker.class)
+        {
+            userNumber="JP"+id;
+
+        }
+        else if (getClass()==Emplooyer.class)
+        {
+
+
+            userNumber="EMP"+id;
+        }
+        else if((getClass()==Admin.class))
+        {
+            userNumber="ADM"+id;
+        }
     }
-
-
 }

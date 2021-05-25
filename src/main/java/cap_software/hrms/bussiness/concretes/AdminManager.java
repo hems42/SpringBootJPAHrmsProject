@@ -1,7 +1,7 @@
 package cap_software.hrms.bussiness.concretes;
 
 import cap_software.hrms.bussiness.abstracts.AdminService;
-import cap_software.hrms.dataaccess.abstracts.AdminDao;
+import cap_software.hrms.dataAccess.abstracts.AdminDao;
 import cap_software.hrms.entities.concretes.users.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
