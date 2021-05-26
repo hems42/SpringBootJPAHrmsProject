@@ -5,11 +5,7 @@ import cap_software.hrms.entities.concretes.users.Emplooyer;
 
 import java.util.List;
 
-public interface EmplooyerService {
+public interface EmplooyerService extends ICrudService<Emplooyer> {
 
-    void add(Emplooyer emplooyer);
 
-    List<Emplooyer> getAll();
-
-    Emplooyer findById(int id);
 }

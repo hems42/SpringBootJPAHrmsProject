@@ -14,6 +14,7 @@ public class AdminManager implements AdminService {
     @Autowired
     private AdminDao adminDao;
 
+
     @Override
     public void add(Admin admin) {
         adminDao.save(admin);
@@ -25,7 +26,20 @@ public class AdminManager implements AdminService {
     }
 
     @Override
-    public Admin findById(int id) {
+    public void update(Admin admin) {
+
+        adminDao.save(admin);
+    }
+
+    @Override
+    public void delete(Admin admin) {
+
+        adminDao.delete(admin);
+
+    }
+
+    @Override
+    public Admin getById(int id) {
         return adminDao.findById(id).get();
     }
 }

@@ -4,12 +4,8 @@ import cap_software.hrms.entities.concretes.users.JopSeeker;
 
 import java.util.List;
 
-public interface JopSeekerService {
+public interface JopSeekerService extends ICrudService<JopSeeker>{
 
-    void add(JopSeeker jopSeeker);
 
-    List<JopSeeker> getAll();
-
-    JopSeeker findById(int id);
 
 }

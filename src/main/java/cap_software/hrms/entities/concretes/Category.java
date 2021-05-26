@@ -1,12 +1,16 @@
 package cap_software.hrms.entities.concretes;
 
 import cap_software.hrms.entities.concretes.utils.DateParametres;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="JopCategories")
 public class Category {
@@ -21,7 +25,7 @@ public class Category {
     @Embedded
     private DateParametres dateParametres;
 
-    @ManyToMany(mappedBy = "categoryList")
+    @ManyToMany(mappedBy = "categoryList",cascade = CascadeType.ALL)
     private List<JopPosition> jopPosition;
 
 }

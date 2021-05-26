@@ -1,12 +1,16 @@
 package cap_software.hrms.entities.concretes;
 
 import cap_software.hrms.entities.concretes.utils.DateParametres;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="JopPositions")
 public class JopPosition {

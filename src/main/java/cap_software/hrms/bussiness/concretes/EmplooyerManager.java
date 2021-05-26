@@ -13,6 +13,7 @@ public class EmplooyerManager implements EmplooyerService {
 
     @Autowired
     private EmplooyerDao emplooyerDao;
+
     @Override
     public void add(Emplooyer emplooyer) {
         emplooyerDao.save(emplooyer);
@@ -24,7 +25,19 @@ public class EmplooyerManager implements EmplooyerService {
     }
 
     @Override
-    public Emplooyer findById(int id) {
+    public void update(Emplooyer emplooyer) {
+        emplooyerDao.save(emplooyer);
+
+    }
+
+    @Override
+    public void delete(Emplooyer emplooyer) {
+        emplooyerDao.delete(emplooyer);
+
+    }
+
+    @Override
+    public Emplooyer getById(int id) {
         return emplooyerDao.findById(id).get();
     }
 }

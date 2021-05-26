@@ -14,6 +14,7 @@ public class JopSeekerManager implements JopSeekerService {
     @Autowired
     private  JopSeekerDao  jopSeekerDao;
 
+
     @Override
     public void add(JopSeeker jopSeeker) {
         jopSeekerDao.save(jopSeeker);
@@ -21,12 +22,22 @@ public class JopSeekerManager implements JopSeekerService {
 
     @Override
     public List<JopSeeker> getAll() {
-
         return jopSeekerDao.findAll();
     }
 
     @Override
-    public JopSeeker findById(int id) {
+    public void update(JopSeeker jopSeeker) {
+        jopSeekerDao.save(jopSeeker);
+
+    }
+
+    @Override
+    public void delete(JopSeeker jopSeeker) {
+   jopSeekerDao.delete(jopSeeker);
+    }
+
+    @Override
+    public JopSeeker getById(int id) {
         return jopSeekerDao.findById(id).get();
     }
 }

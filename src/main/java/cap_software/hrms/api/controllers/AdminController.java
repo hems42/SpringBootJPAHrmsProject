@@ -31,7 +31,7 @@ public class AdminController {
     @GetMapping("/{id}")
     Admin getAll(@PathVariable("id") int id)
     {
-        return adminService.findById(id);
+        return adminService.getById(id);
     }
 
 

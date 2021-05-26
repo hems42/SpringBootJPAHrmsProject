@@ -5,12 +5,7 @@ import cap_software.hrms.entities.concretes.users.User;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserService extends ICrudService<User> {
 
 
-    void add(User user);
-
-    List<User> getAll();
-
-    User findById(int id);
 }

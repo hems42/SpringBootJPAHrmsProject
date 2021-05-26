@@ -6,11 +6,7 @@ import cap_software.hrms.entities.concretes.users.Admin;
 
 import java.util.List;
 
-public interface AdminService {
+public interface AdminService extends ICrudService<Admin>{
 
-    void add(Admin admin);
 
-    List<Admin> getAll();
-
-    Admin findById(int id);
 }

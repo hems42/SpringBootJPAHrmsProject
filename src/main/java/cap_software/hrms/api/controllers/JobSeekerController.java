@@ -34,7 +34,7 @@ public class JobSeekerController {
     @GetMapping("/{id}")
     JopSeeker getAll(@PathVariable("id") int id)
     {
-        return jopSeekerService.findById(id);
+        return jopSeekerService.getById(id);
     }
 
 
