@@ -15,9 +15,9 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne
-    @JoinColumn(name = "ownerId")
-    private Emplooyer emplooyer;
+
+    @Column(name = "CompanyName",nullable = false,length = 100,unique = true)
+    private String companyName;
 
     @Embedded
     DateParametres dataParametres;
