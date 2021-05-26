@@ -2,7 +2,7 @@ package cap_software.hrms.entities.concretes.users;
 import cap_software.hrms.entities.concretes.contacts.PhoneNumber;
 import cap_software.hrms.entities.concretes.contacts.WebSite;
 import cap_software.hrms.entities.concretes.utils.AuthParametres;
-import cap_software.hrms.entities.concretes.verifications.AdminVerifications;
+import cap_software.hrms.entities.concretes.verifications.AdminVerification;
 import cap_software.hrms.entities.concretes.verifications.EmailVerification;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,7 +38,7 @@ public class Emplooyer extends User implements  Serializable{
 
     @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     @JoinColumn(name="AdminVerifyId",unique = true,nullable = false)
-    private AdminVerifications adminVerifications;
+    private AdminVerification adminVerification;
 
 
 

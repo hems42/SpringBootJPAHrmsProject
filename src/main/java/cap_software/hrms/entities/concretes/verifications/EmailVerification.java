@@ -27,6 +27,10 @@ public class EmailVerification {
     private DateParametres dateParametres;
 
 
+    @Column(name="isVerified",updatable = false)
+    private  boolean isVerifed=false;
+
+
     @Column(name="Token",length = 200,nullable = false)
     private String token;
 

@@ -6,6 +6,8 @@ import cap_software.hrms.entities.concretes.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserManager implements UserService {
 
@@ -16,5 +18,15 @@ public class UserManager implements UserService {
     @Override
     public void add(User user) {
         this.userDao.save(user);
+    }
+
+    @Override
+    public List<User> getAll() {
+        return userDao.findAll();
+    }
+
+    @Override
+    public User findById(int id) {
+        return userDao.findById(id).get();
     }
 }

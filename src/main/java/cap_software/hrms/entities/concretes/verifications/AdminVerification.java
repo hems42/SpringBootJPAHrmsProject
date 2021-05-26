@@ -5,14 +5,16 @@ import cap_software.hrms.entities.concretes.users.User;
 import cap_software.hrms.entities.concretes.utils.DateParametres;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="AdminVerifications")
-public class AdminVerifications {
+public class AdminVerification {
 
 
     @Id
@@ -23,6 +25,8 @@ public class AdminVerifications {
     @Embedded
     private DateParametres dateParametres;
 
+    @Column(name="isVerified",updatable = false)
+    private  boolean isVerifed=false;
 
     @JoinColumn(name="VerifierId")
    private int verifierId;
