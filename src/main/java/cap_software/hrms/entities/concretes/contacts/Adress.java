@@ -1,6 +1,7 @@
 package cap_software.hrms.entities.concretes.contacts;
 
 import cap_software.hrms.entities.concretes.users.User;
+import cap_software.hrms.entities.concretes.utils.City;
 import cap_software.hrms.entities.concretes.utils.DateParametres;
 import lombok.*;
 
@@ -17,7 +18,9 @@ public class Adress {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String city;
+    @OneToOne
+    @JoinColumn(name = "CityId",nullable = false)
+    private City city;
 
     private String  district;
 

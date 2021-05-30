@@ -5,32 +5,25 @@ package cap_software.hrms.entities.concretes.users;
 
 
 import cap_software.hrms.entities.concretes.utils.DateParametres;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import lombok.experimental.FieldNameConstants;
-
-
 import javax.persistence.*;
-import java.util.Date;
+
+
 
 @Data
 @AllArgsConstructor
 @Entity
 @Table(name="Users")
 @Inheritance(strategy = InheritanceType.JOINED)
+
 public abstract class User {
-
-
-
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="UserId")
     private int id;
-
-
-
-
 
 
 
@@ -48,9 +41,6 @@ public abstract class User {
     private String password;
 
 
-
-    @Transient
-    private String matchedPassword;
 
 
 

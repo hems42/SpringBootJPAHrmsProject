@@ -2,6 +2,7 @@ package cap_software.hrms;
 
 
 import cap_software.hrms.bussiness.concretes.UserManager;
+import cap_software.hrms.entities.concretes.JopAdvertisement;
 import cap_software.hrms.entities.concretes.users.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,6 +20,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 @SpringBootApplication
@@ -27,6 +30,8 @@ public class HrmsApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(HrmsApplication.class, args);
+
+
 
 
      //   EntityManagerFactory factory= Persistence.createEntityManagerFactory("default");

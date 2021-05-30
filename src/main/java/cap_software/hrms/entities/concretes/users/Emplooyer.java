@@ -1,4 +1,6 @@
 package cap_software.hrms.entities.concretes.users;
+import cap_software.hrms.entities.concretes.Company;
+import cap_software.hrms.entities.concretes.JopAdvertisement;
 import cap_software.hrms.entities.concretes.contacts.PhoneNumber;
 import cap_software.hrms.entities.concretes.contacts.WebSite;
 import cap_software.hrms.entities.concretes.utils.AuthParametres;
@@ -23,14 +25,6 @@ public class Emplooyer extends User implements  Serializable{
 
 
 
-    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-    @JoinTable(name = "emplooyers_web_sites")
-    private List<WebSite> webSites= new ArrayList<>();
-
-
-    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-    @JoinTable(name = "emplooyers_phone_numbers")
-    private List<PhoneNumber> phoneNumbers= new ArrayList<>();
 
     @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     @JoinColumn(name="EmailVerifyId",unique = true,nullable = false)
@@ -41,20 +35,20 @@ public class Emplooyer extends User implements  Serializable{
     private AdminVerification adminVerification;
 
 
+    @OneToMany
+    @JoinTable(name = "EmplooyersCompanies",
+            joinColumns = @JoinColumn(name="EmplooyerId"),
+            inverseJoinColumns = @JoinColumn(name = "CompanyId"))
+    private List<Company> companies;
+
+    @OneToMany
+    @JoinTable(name = "EmplooyersJopAdvertisements",
+            joinColumns = @JoinColumn(name="EmplooyerId"),
+            inverseJoinColumns = @JoinColumn(name = "JopAdvertisementId"))
+    private List<JopAdvertisement> jopAdvertisementies;
 
     @Embedded
     private AuthParametres authParametres;
-
-    public void addWebSite(WebSite webSite)
-    {
-        this.webSites.add(webSite);
-    }
-
-
-    public void addPhoneNumber(PhoneNumber phoneNumber)
-    {
-        this.phoneNumbers.add(phoneNumber);
-    }
 
 
 
