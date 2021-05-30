@@ -8,10 +8,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+
 
 @Data
 @NoArgsConstructor
@@ -69,6 +68,7 @@ public class JopAdvertisement {
     @JoinColumn(name = "CompanyId",nullable = false)
     private Company company;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "EmplooyerId",nullable = false)
     private Emplooyer emplooyer;

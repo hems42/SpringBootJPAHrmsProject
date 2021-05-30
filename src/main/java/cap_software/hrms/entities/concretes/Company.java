@@ -34,19 +34,28 @@ public class Company {
     @Embedded
     DateParametres dataParametres;
 
+
+
+    @JsonIgnore
     @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JoinTable(name = "companies_web_sites")
     private List<WebSite> webSites= new ArrayList<>();
 
+
+    @JsonIgnore
     @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JoinTable(name = "companies_phone_numbers")
     private List<PhoneNumber> phoneNumbers= new ArrayList<>();
 
+
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name="CompanyJopAdvertisement",joinColumns = @JoinColumn(name="CompanyId"),inverseJoinColumns = @JoinColumn(name = "JopAdvertisemenId"))
     private List<JopAdvertisement> jopAdvertisement;
 
-    @OneToOne
+
+    @JsonIgnore
+    @ManyToOne
     @JoinColumn(name="EmplooyerId")
     private Emplooyer emplooyer;
 

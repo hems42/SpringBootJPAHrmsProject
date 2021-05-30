@@ -6,6 +6,7 @@ import cap_software.hrms.entities.concretes.contacts.WebSite;
 import cap_software.hrms.entities.concretes.utils.AuthParametres;
 import cap_software.hrms.entities.concretes.verifications.AdminVerification;
 import cap_software.hrms.entities.concretes.verifications.EmailVerification;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,9 +27,11 @@ public class Emplooyer extends User implements  Serializable{
 
 
 
-    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+
+    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST},targetEntity = EmailVerification.class)
     @JoinColumn(name="EmailVerifyId",unique = true,nullable = false)
     private EmailVerification emailVerification;
+
 
     @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     @JoinColumn(name="AdminVerifyId",unique = true,nullable = false)
