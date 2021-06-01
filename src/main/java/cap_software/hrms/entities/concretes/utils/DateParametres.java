@@ -19,9 +19,11 @@ import java.util.Date;
 public class DateParametres {
 
 
+
     @Temporal(TemporalType.DATE)
     @Column(name = "AddDate",updatable = false)
     private Date addedDate;
+
 
 
 

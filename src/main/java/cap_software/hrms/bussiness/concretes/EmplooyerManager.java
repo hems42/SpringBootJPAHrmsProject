@@ -2,6 +2,7 @@ package cap_software.hrms.bussiness.concretes;
 
 import cap_software.hrms.bussiness.abstracts.EmplooyerService;
 import cap_software.hrms.dataAccess.abstracts.EmplooyerDao;
+import cap_software.hrms.entities.concretes.JopAdvertisement;
 import cap_software.hrms.entities.concretes.users.Emplooyer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,4 +41,19 @@ public class EmplooyerManager implements EmplooyerService {
     public Emplooyer getById(int id) {
         return emplooyerDao.findById(id).get();
     }
+
+    @Override
+    public List<Emplooyer> getByIsActive(boolean isActive) {
+        return emplooyerDao.getByIsActive(isActive);
+    }
+
+    @Override
+    public List<JopAdvertisement> getAllJopAdvertisements(int id) {
+        return emplooyerDao.getJopAdvertisements(id);
+    }
+
+ /*   @Override
+    public void addJopAdvertisement(int id, JopAdvertisement jopAdvertisement) {
+        emplooyerDao.addJopAdvertisement(id,jopAdvertisement);
+    }*/
 }

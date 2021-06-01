@@ -5,14 +5,16 @@ package cap_software.hrms.entities.concretes.users;
 
 
 import cap_software.hrms.entities.concretes.utils.DateParametres;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
-
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Entity
 @Table(name="Users")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -27,16 +29,22 @@ public abstract class User {
 
 
 
-    @GeneratedValue
-    @Column(name="UserNumber", nullable = false,unique = true,length =10,insertable = true, updatable = false)
+
+
+    @Column(name="UserNumber", nullable = false,unique = true,length =40, updatable = false)
     private String  userNumber;
 
 
+    @Email
+    @NotNull
+    @NotBlank
     @Column(name="Email", nullable = false,unique = true,length = 50)
     private String email;
 
 
 
+    @NotNull
+    @NotBlank
     @Column(name="Password", nullable = false,length = 250)
     private String password;
 
@@ -48,21 +56,6 @@ public abstract class User {
     private DateParametres dateParametres;
 
 
-    public User() {
-        if(getClass()==JopSeeker.class)
-        {
-            userNumber="JP"+id;
 
-        }
-        else if (getClass()==Emplooyer.class)
-        {
-
-
-            userNumber="EMP"+id;
-        }
-        else if((getClass()==Admin.class))
-        {
-            userNumber="ADM"+id;
-        }
     }
-}
+

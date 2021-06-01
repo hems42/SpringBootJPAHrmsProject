@@ -3,10 +3,13 @@ package cap_software.hrms;
 
 import cap_software.hrms.bussiness.concretes.UserManager;
 import cap_software.hrms.entities.concretes.JopAdvertisement;
+import cap_software.hrms.entities.concretes.users.Admin;
+import cap_software.hrms.entities.concretes.users.Emplooyer;
 import cap_software.hrms.entities.concretes.users.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;

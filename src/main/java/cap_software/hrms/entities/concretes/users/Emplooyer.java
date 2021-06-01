@@ -29,12 +29,12 @@ public class Emplooyer extends User implements  Serializable{
 
 
     @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST},targetEntity = EmailVerification.class)
-    @JoinColumn(name="EmailVerifyId",unique = true,nullable = false)
+    @JoinColumn(name="EmailVerifyId",unique = true)
     private EmailVerification emailVerification;
 
 
     @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
-    @JoinColumn(name="AdminVerifyId",unique = true,nullable = false)
+    @JoinColumn(name="AdminVerifyId",unique = true)
     private AdminVerification adminVerification;
 
 
@@ -44,14 +44,21 @@ public class Emplooyer extends User implements  Serializable{
             inverseJoinColumns = @JoinColumn(name = "CompanyId"))
     private List<Company> companies;
 
+    @JsonIgnore
     @OneToMany
     @JoinTable(name = "EmplooyersJopAdvertisements",
             joinColumns = @JoinColumn(name="EmplooyerId"),
             inverseJoinColumns = @JoinColumn(name = "JopAdvertisementId"))
-    private List<JopAdvertisement> jopAdvertisementies;
+    private List<JopAdvertisement> jopAdvertisementies= new ArrayList<>();
 
     @Embedded
     private AuthParametres authParametres;
+
+
+    public void addAdvertisement(JopAdvertisement jopAdvertisement)
+    {
+        jopAdvertisementies.add(jopAdvertisement);
+    }
 
 
 

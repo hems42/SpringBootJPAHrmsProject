@@ -6,6 +6,6 @@ import cap_software.hrms.entities.concretes.contacts.PersonalInformation;
 public class MyCustomMernisAdapter implements CheckPersonService {
     @Override
     public boolean isValidPerson(PersonalInformation information) {
-        return false;
+        return true;
     }
 }

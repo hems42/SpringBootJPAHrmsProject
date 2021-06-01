@@ -1,4 +1,4 @@
-package cap_software.hrms.outSourceService.myCustomMernis;
+package cap_software.hrms.outSourceServices.myCustomMernis;
 
 public class MyCustomMernis {
 

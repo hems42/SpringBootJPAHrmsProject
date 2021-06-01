@@ -7,10 +7,12 @@ public class MyEmailServiceAdapter implements EmailService {
     @Override
     public void sendMail(String mesaj) {
 
+
+
     }
 
     @Override
     public boolean checkMail(String email) {
-        return false;
+        return true;
     }
 }
