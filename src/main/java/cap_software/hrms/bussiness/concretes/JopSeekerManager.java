@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -38,46 +37,46 @@ public class JopSeekerManager implements JopSeekerService {
     @Override
     public DataResult<JopSeekerDto> addJopSeeker(JopSeekerDto jopSeekerDto) {
 
-        JopSeeker jopSeeker=modelMapper.map(jopSeekerDto,JopSeeker.class);
+        JopSeeker jopSeeker= new JopSeeker();
 
-        PersonalInformation information= new PersonalInformation();
+       PersonalInformation information =modelMapper.map(jopSeekerDto.getPersonalInformationDto(),PersonalInformation.class);
+        information.setUser(jopSeeker);
 
         EmailVerification emailVerification= new EmailVerification();
         emailVerification.setVerifed(false);
         emailVerification.setExpiryDate(Date.valueOf("2021-06-01"));
-        emailVerification.setToken("new Random().nextInt()"+jopSeekerDto.getName());
-         emailVerification.setDateParametres(new DateParametres());
+        emailVerification.setToken("n56+df54g56df455645d64fg56df4g5s" +
+                "d4f5s6f4s56f4sd5645w6e456sd4f56sd4f65sd4f56sf" +
+                "sd6s5ad56as4d6s4ad6+as4d6as45d56as4d56a4s5d64as5d4as56");
+        emailVerification.setDateParametres(new DateParametres());
 
-        jopSeeker.setUserNumber(Integer.toString(new Random().nextInt()));
+
+
         jopSeeker.setEmail(jopSeekerDto.getEmail());
         jopSeeker.setPassword(jopSeekerDto.getPassword());
-        jopSeeker.setAuthParametres(new AuthParametres(true));
-        jopSeeker.setPersonalInformation(information);
-        jopSeeker.setDateParametres(new DateParametres());
-
-
-        information.setUser(jopSeeker);
-        information.setName(jopSeekerDto.getName());
-        information.setSurname(jopSeekerDto.getSurname());
-        information.setBirthDay(jopSeekerDto.getBirthOfDate());
-        information.setNationalIdentityNumber(jopSeekerDto.getNationalIdentityNumber());
-        information.setSex(jopSeekerDto.getSex());
-
-
+        jopSeeker.setUserNumber("JPSKR");
         jopSeeker.setEmailVerification(emailVerification);
-
-        JopSeekerDto seekerDto= new JopSeekerDto();
-        seekerDto.setSex(jopSeekerDto.getSex());
-        seekerDto.setBirthOfDate(jopSeekerDto.getBirthOfDate());
-        seekerDto.setName(jopSeekerDto.getName());
-        seekerDto.setSurname(jopSeekerDto.getSurname());
-        seekerDto.setNationalIdentityNumber(jopSeekerDto.getNationalIdentityNumber());
-        seekerDto.setEmail(jopSeekerDto.getEmail());
-        seekerDto.setMatchingPassword(jopSeekerDto.getMatchingPassword());
-        seekerDto.setPassword(jopSeekerDto.getPassword());
+        jopSeeker.setPersonalInformation(information);
 
 
-        return new SuccessDataResult<JopSeekerDto>(modelMapper.map(jopSeekerDao.save(jopSeeker), JopSeekerDto.class),"kullanıcı başarıyla eklendi");
+        System.out.println(jopSeeker);
+
+        System.out.println(jopSeekerDto);
+
+
+
+
+
+        jopSeekerDao.save(jopSeeker);
+
+
+
+
+
+
+        return null;
+
+        //return new SuccessDataResult<JopSeekerDto>(modelMapper.map(jopSeekerDao.save(jopSeeker), JopSeekerDto.class),"kullanıcı başarıyla eklendi");
 
        // return new SuccessDataResult<>(seekerDto, "kullanıcı başarıyla eklendi");
 
@@ -124,10 +123,12 @@ public class JopSeekerManager implements JopSeekerService {
 
                 modelMapper.map(j,JopSeekerDto.class))
                 .collect(Collectors.toList());*/
-        List<JopSeekerDto> jopSeekerDtos=jopSeekerDao.findAll().stream().map(j ->j.getJobSeekerDto()).collect(Collectors.toList());
+      //  List<JopSeekerDto> jopSeekerDtos=jopSeekerDao.findAll().stream().map(j ->j.getJobSeekerDto()).collect(Collectors.toList());
 
 
 
-        return new SuccessDataResult<>(jopSeekerDtos, "kullanıcılar başarıyla getirildi");
+    //    return new SuccessDataResult<>(jopSeekerDtos, "kullanıcılar başarıyla getirildi");
+
+        return null;
     }
 }

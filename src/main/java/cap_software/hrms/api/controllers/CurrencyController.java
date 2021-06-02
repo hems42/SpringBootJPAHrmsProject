@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/currencies")
+//@RestController
+//@RequestMapping("/api/currencies")
 public class CurrencyController {
-
+/*
     @Autowired
     private CurrencyService currencyService;
 
@@ -24,5 +24,5 @@ public class CurrencyController {
     void add(@RequestBody Currency currency)
     {
         currencyService.add(currency);
-    }
+    }*/
 }

@@ -5,10 +5,10 @@ import cap_software.hrms.entities.dtos.userDtos.EmplooyerDto;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class EmailContainDomainSiteValidation implements ConstraintValidator<ValidContainDomainEmail,EmplooyerDto > {
+public class EmailContainDomainSiteValidation implements ConstraintValidator<ValidEmailContainDomain,EmplooyerDto > {
 
     @Override
-    public void initialize(ValidContainDomainEmail constraintAnnotation) {
+    public void initialize(ValidEmailContainDomain constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
 

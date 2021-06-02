@@ -6,10 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.Date;
+
 
 @Data
 @AllArgsConstructor
@@ -30,24 +27,7 @@ Daha önce kayıtlı bir e-posta veya tcno var ise kayıt gerçekleşmez. Kullan
 Kayıdın gerçekleşmesi için e-posta doğrulaması gerekir.
 */
 
-    @NotBlank
-    @NotNull
-    private String name;
 
-    @NotBlank
-    @NotNull
-    private String surname;
+    private  PersonalInformationDto personalInformationDto;
 
-    @Size(max = 11,min = 11,message = "NationalIdentityNumber Size Must Be 11")
-    @NotBlank
-    @NotNull
-    private String nationalIdentityNumber;
-
-
-    @NotNull
-    private Date birthOfDate;
-
-    @NotBlank
-    @NotNull
-    private String sex;
 }

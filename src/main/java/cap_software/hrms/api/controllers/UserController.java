@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/users")
-public class UserController implements ICrudController<User> {
+//@RestController
+//@RequestMapping("/api/users")
+public class UserController  {
 
+    /*
     @Autowired
     private UserService userService;
 
@@ -50,5 +51,5 @@ public class UserController implements ICrudController<User> {
     public User getById(@PathVariable int id) {
         return userService.getById(id);
     }
-
+*/
 }

@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = EmailContainDomainSiteValidation.class)
 @Documented
-public @interface ValidContainDomainEmail {
+public @interface ValidEmailContainDomain {
 
     String message() default "!! Email not contain website domain";
 

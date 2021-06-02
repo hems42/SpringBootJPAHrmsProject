@@ -32,23 +32,20 @@ public class PersonalInformation implements Serializable {
     @Column(name="NationalIdentityNumber", length =11, nullable = false,unique = true)
     private String nationalIdentityNumber;
 
-    @Column(name="BirhtDay", length = 50, nullable = false)
+    @Column(name="BirhtOfDate", length = 50, nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date birthDay;
+    private Date birthOfDate;
 
 
     @Column(name="Sex",nullable = false,length = 5)
     private String sex;
 
     @OneToOne
-    @JoinColumn(name = "UserId")
+    @JoinColumn(name = "UserId",referencedColumnName = "UserId")
     private User user;
 
 
 
 
 
-    public void setSex(String sex) {
-        this.sex = sex.toString();
-    }
 }

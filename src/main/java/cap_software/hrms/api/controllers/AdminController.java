@@ -7,9 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/admins")
+//@RestController
+//@RequestMapping("/api/admins")
 public class AdminController {
+/*
 
         @Autowired
         private AdminService adminService;
@@ -34,5 +35,6 @@ public class AdminController {
         return adminService.getById(id);
     }
 
+*/
 
 }

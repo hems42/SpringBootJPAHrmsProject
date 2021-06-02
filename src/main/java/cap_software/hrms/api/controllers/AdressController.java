@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/adresses")
+//@RestController
+//@RequestMapping("/api/adresses")
 public class AdressController {
 
-    @Autowired
+   /* @Autowired
     private AdressService adressService;
 
     @GetMapping("getall")
@@ -25,5 +25,5 @@ public class AdressController {
     public void add(@RequestBody Adress adress)
     {
         adressService.add(adress);
-    }
+    }*/
 }

@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/ap/joppositions")
-public class JopPositionController implements ICrudController<JopPosition> {
-
+//@RestController
+//@RequestMapping("/ap/joppositions")
+public class JopPositionController  {
+/*
     @Autowired
     private JopPositionService jopPositionService;
 
@@ -50,5 +50,5 @@ public class JopPositionController implements ICrudController<JopPosition> {
     @Override
     public JopPosition getById(@PathVariable int id) {
         return jopPositionService.getById(id);
-    }
+    }*/
 }

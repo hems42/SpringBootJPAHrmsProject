@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/companies")
+//@RestController
+//@RequestMapping("/api/companies")
 public class CompanyController {
 
-    @Autowired
+  /*  @Autowired
     private CompanyService companyService;
 
     @GetMapping("getall")
@@ -24,5 +24,5 @@ public class CompanyController {
     public void add(@RequestBody Company company)
     {
         companyService.add(company);
-    }
+    }*/
 }

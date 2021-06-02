@@ -16,13 +16,13 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/jobseekers")
-public class JobSeekerController {
+public class JobSeekersController {
 
     @Autowired
     private JopSeekerService jopSeekerService;
 
     @PostMapping(value = "add")
-    public ResponseEntity<?> addUser(@Valid @RequestBody JopSeekerDto jobSeekerDto) {
+    public ResponseEntity<?> add(@Valid @RequestBody JopSeekerDto jobSeekerDto) {
 
 
         return ResponseEntity.ok(jopSeekerService.addJopSeeker(jobSeekerDto));
@@ -34,6 +34,29 @@ public class JobSeekerController {
     {
         return ResponseEntity.ok(jopSeekerService.getAll());
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

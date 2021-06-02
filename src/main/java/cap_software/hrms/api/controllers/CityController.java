@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/cities")
+//@RestController
+//@RequestMapping("/api/cities")
 public class CityController {
 
+/*
 
     @Autowired
     private CityService cityService;
@@ -25,6 +26,7 @@ public class CityController {
 
         return cityService.getAll();
     }
+*/
 
 
 }
