@@ -1,9 +1,10 @@
 package cap_software.hrms.entities.concretes.verifications;
 
-import cap_software.hrms.entities.concretes.users.User;
+
 import cap_software.hrms.entities.concretes.utils.DateParametres;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,8 +24,9 @@ public class EmailVerification {
     @Column(name="PrivilageId")
     private int id;
 
+
     @Embedded
-    private DateParametres dateParametres;
+    private DateParametres dateParametres=new DateParametres();
 
 
     @Column(name="isVerified",updatable = false)
@@ -45,6 +47,7 @@ public class EmailVerification {
     }
 
 
+    @Transient
     private Date calculateExpiryDate(int EXPIRY_DATE)
     {
         Calendar calender=Calendar.getInstance();

@@ -15,8 +15,8 @@ import java.util.List;
 
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name="JopSeekers")
 @PrimaryKeyJoinColumn(name="UserId", referencedColumnName="UserId")
@@ -36,7 +36,6 @@ public class JopSeeker extends User implements Serializable  {
 
     @OneToMany(mappedBy = "user",cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private List<CurriculumVitae> curriculumVitaes;
-
 
 
 

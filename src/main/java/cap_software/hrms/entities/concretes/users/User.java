@@ -7,18 +7,22 @@ package cap_software.hrms.entities.concretes.users;
 import cap_software.hrms.entities.concretes.utils.DateParametres;
 import lombok.*;
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+
 
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Entity
-@Table(name="Users")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name="Users",
 
+uniqueConstraints ={
+        @UniqueConstraint(columnNames = "UserNumber", name = "UK_USER_NUMBER"),
+        @UniqueConstraint(columnNames = "Email", name = "UK_EMAİL_ADDRESS")
+
+}
+)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User {
 
 
@@ -31,20 +35,18 @@ public abstract class User {
 
 
 
-    @Column(name="UserNumber", nullable = false,unique = true,length =40, updatable = false)
+
+    @Column(name="UserNumber", nullable = false,length =40, updatable = false)
     private String  userNumber;
 
 
-    @Email
-    @NotNull
-    @NotBlank
-    @Column(name="Email", nullable = false,unique = true,length = 50)
+
+    @Column(name="Email", nullable = false,length = 50)
     private String email;
 
 
 
-    @NotNull
-    @NotBlank
+
     @Column(name="Password", nullable = false,length = 250)
     private String password;
 
@@ -53,7 +55,7 @@ public abstract class User {
 
 
     @Embedded
-    private DateParametres dateParametres;
+    private DateParametres dateParametres= new DateParametres();
 
 
 

@@ -8,19 +8,19 @@ import cap_software.hrms.core.utilities.results.SuccessDataResult;
 import cap_software.hrms.dataAccess.abstracts.JopSeekerDao;
 import cap_software.hrms.entities.concretes.contacts.PersonalInformation;
 import cap_software.hrms.entities.concretes.users.JopSeeker;
-import cap_software.hrms.entities.concretes.utils.AuthParametres;
 import cap_software.hrms.entities.concretes.utils.DateParametres;
 import cap_software.hrms.entities.concretes.verifications.EmailVerification;
 import cap_software.hrms.entities.dtos.userDtos.JopSeekerDto;
+import cap_software.hrms.entities.dtos.userDtos.PersonalInformationDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
+
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +30,9 @@ public class JopSeekerManager implements JopSeekerService {
     private  JopSeekerDao  jopSeekerDao;
 
 
+
+
+
     private final ModelMapper modelMapper;
     private EmailService  emailService;
     private CheckPersonService checkPersonService;
@@ -37,10 +40,6 @@ public class JopSeekerManager implements JopSeekerService {
     @Override
     public DataResult<JopSeekerDto> addJopSeeker(JopSeekerDto jopSeekerDto) {
 
-        JopSeeker jopSeeker= new JopSeeker();
-
-       PersonalInformation information =modelMapper.map(jopSeekerDto.getPersonalInformationDto(),PersonalInformation.class);
-        information.setUser(jopSeeker);
 
         EmailVerification emailVerification= new EmailVerification();
         emailVerification.setVerifed(false);
@@ -48,86 +47,41 @@ public class JopSeekerManager implements JopSeekerService {
         emailVerification.setToken("n56+df54g56df455645d64fg56df4g5s" +
                 "d4f5s6f4s56f4sd5645w6e456sd4f56sd4f65sd4f56sf" +
                 "sd6s5ad56as4d6s4ad6+as4d6as45d56as4d56a4s5d64as5d4as56");
-        emailVerification.setDateParametres(new DateParametres());
 
 
+        JopSeeker jopSeeker=modelMapper.map(jopSeekerDto,JopSeeker.class);
+        PersonalInformation information=modelMapper.map(jopSeekerDto.getPersonalInformationDto(),PersonalInformation.class);
 
-        jopSeeker.setEmail(jopSeekerDto.getEmail());
-        jopSeeker.setPassword(jopSeekerDto.getPassword());
-        jopSeeker.setUserNumber("JPSKR");
-        jopSeeker.setEmailVerification(emailVerification);
+
+        jopSeeker.setUserNumber("JBSKR-"+ LocalDateTime.now());
+        information.setUser(jopSeeker);
         jopSeeker.setPersonalInformation(information);
-
-
-        System.out.println(jopSeeker);
-
-        System.out.println(jopSeekerDto);
-
+        jopSeeker.setEmailVerification(emailVerification);
 
 
 
 
         jopSeekerDao.save(jopSeeker);
 
+        JopSeekerDto resJopSeekerDto=modelMapper.map(jopSeeker,JopSeekerDto.class);
+        PersonalInformationDto resInformationDto=modelMapper.map(jopSeeker.getPersonalInformation(),PersonalInformationDto.class);
+
+        resJopSeekerDto.setPersonalInformationDto(resInformationDto);
 
 
 
-
-
-        return null;
-
-        //return new SuccessDataResult<JopSeekerDto>(modelMapper.map(jopSeekerDao.save(jopSeeker), JopSeekerDto.class),"kullanıcı başarıyla eklendi");
-
-       // return new SuccessDataResult<>(seekerDto, "kullanıcı başarıyla eklendi");
+        return new SuccessDataResult<JopSeekerDto>(resJopSeekerDto,"Kullanıcı Eklemesi Başarılı");
 
 
 
     }
 
-/*
-    @Override
-    public DataResult<JopSeekerDto> addJopSeeker(JopSeekerDto jopSeekerDto) {
 
-        JopSeeker jopSeeker=new JopSeeker();
-
-        jopSeeker.setJopSeekerDto(jopSeekerDto);
-
-        EmailVerification emailVerification= new EmailVerification();
-        emailVerification.setVerifed(false);
-        emailVerification.setExpiryDate(Date.valueOf("2021-06-01"));
-        emailVerification.setToken("new Random().nextInt()"+jopSeekerDto.getName());
-        emailVerification.setDateParametres(new DateParametres());
-
-        jopSeeker.setEmailVerification(emailVerification);
-
-
-
-
-
-
-        return new SuccessDataResult<JopSeekerDto>(jopSeeker.getJobSeekerDto(),"kullanıcı başarıyla eklendi");
-
-        // return new SuccessDataResult<>(seekerDto, "kullanıcı başarıyla eklendi");
-
-
-
-    }*/
 
 
     @Override
     public DataResult<List<JopSeekerDto>> getAll() {
 
-        JopSeeker jb;
-      /*  List<JopSeekerDto> jopSeekerDtos=jopSeekerDao.findAll().stream().map(j ->
-
-
-                modelMapper.map(j,JopSeekerDto.class))
-                .collect(Collectors.toList());*/
-      //  List<JopSeekerDto> jopSeekerDtos=jopSeekerDao.findAll().stream().map(j ->j.getJobSeekerDto()).collect(Collectors.toList());
-
-
-
-    //    return new SuccessDataResult<>(jopSeekerDtos, "kullanıcılar başarıyla getirildi");
 
         return null;
     }
