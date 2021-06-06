@@ -14,6 +14,8 @@ import java.lang.annotation.*;
 @Documented
 public @interface ValidNationalIdentityNumber {
 
+    String message() default "!! Not Valid Personal Identity Number...";
+
     Class<?>[] groups() default { };
 
     Class<? extends Payload>[] payload() default { };

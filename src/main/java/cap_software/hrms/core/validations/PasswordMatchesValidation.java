@@ -26,13 +26,13 @@ public class PasswordMatchesValidation implements ConstraintValidator<ValidPassw
         {
             UserDto userDto=(UserDto) value;
 
-            System.out.println("girdi user sınıfını tanıdı");
+
 
             result=userDto.getPassword().equals(userDto.getMatchingPassword());
         }
         else
         {
-            System.out.println("else gitfi  tanımadı");
+
         }
         return result;
 

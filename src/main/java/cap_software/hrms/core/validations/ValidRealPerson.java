@@ -9,7 +9,7 @@ import java.lang.annotation.*;
                 ElementType.ANNOTATION_TYPE,
                 ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = PasswordMatchesValidation.class)
+@Constraint(validatedBy = PersonCheckValidation.class)
 @Documented
 public @interface ValidRealPerson {
     String message() default "!! Not valid person";

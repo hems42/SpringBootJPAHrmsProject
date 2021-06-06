@@ -1,16 +1,18 @@
 package cap_software.hrms.entities.concretes.contacts;
 
 
+
 import cap_software.hrms.entities.concretes.users.User;
 import cap_software.hrms.entities.concretes.utils.DateParametres;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+
 
 @Data
 @AllArgsConstructor
@@ -37,7 +39,7 @@ public class PersonalInformation implements Serializable {
     @Column(name="NationalIdentityNumber", length =11, nullable = false)
     private String nationalIdentityNumber;
 
-    @Column(name="BirhtOfDate", length = 50, nullable = false)
+    @Column(name="BirhtOfDate",nullable = false)
     @Temporal(TemporalType.DATE)
     private Date birthOfDate;
 

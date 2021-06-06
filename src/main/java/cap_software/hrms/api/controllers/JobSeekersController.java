@@ -32,7 +32,7 @@ public class JobSeekersController {
     @GetMapping("getAll")
     public ResponseEntity<?> getAll()
     {
-        return ResponseEntity.ok(jopSeekerService.getAll());
+        return ResponseEntity.ok(jopSeekerService.getAllJobSeekers());
     }
 
 

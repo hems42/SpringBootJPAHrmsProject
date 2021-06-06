@@ -2,10 +2,13 @@ package cap_software.hrms;
 
 
 import cap_software.hrms.bussiness.concretes.UserManager;
+import cap_software.hrms.core.utilities.outSourceServiceAdapter.abstracts.CheckValidPersonService;
+import cap_software.hrms.core.utilities.outSourceServiceAdapter.concretes.CheckValidPersonMernisAdapter;
 import cap_software.hrms.entities.concretes.JopAdvertisement;
 import cap_software.hrms.entities.concretes.users.Admin;
 import cap_software.hrms.entities.concretes.users.Emplooyer;
 import cap_software.hrms.entities.concretes.users.User;
+import cap_software.hrms.outSourceServices.mernis.IWWKPSPublicSoap;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -15,6 +18,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.mapping.JpaPersistentEntity;
 import org.springframework.orm.hibernate5.HibernateOperations;
+import org.springframework.validation.beanvalidation.SpringValidatorAdapter;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -37,7 +41,9 @@ public class HrmsApplication {
 
 
 
-     //   EntityManagerFactory factory= Persistence.createEntityManagerFactory("default");
+
+
+        //   EntityManagerFactory factory= Persistence.createEntityManagerFactory("default");
 
 
 

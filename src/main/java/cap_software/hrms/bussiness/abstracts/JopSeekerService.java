@@ -9,7 +9,7 @@ import java.util.List;
 public interface JopSeekerService {
 
     DataResult<JopSeekerDto> addJopSeeker(JopSeekerDto jopSeekerDto);
-
-    DataResult<List<JopSeekerDto>> getAll();
+    DataResult<List<JopSeekerDto>> getAllJobSeekers();
+    DataResult<JopSeekerDto> getById(int id);
 
 }
