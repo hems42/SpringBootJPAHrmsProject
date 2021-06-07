@@ -1,29 +1,25 @@
 package cap_software.hrms.bussiness.concretes;
 
+
 import cap_software.hrms.bussiness.abstracts.JopSeekerService;
 import cap_software.hrms.core.utilities.outSourceServiceAdapter.abstracts.CheckValidPersonService;
 import cap_software.hrms.core.utilities.outSourceServiceAdapter.abstracts.EmailService;
 import cap_software.hrms.core.utilities.results.DataResult;
 import cap_software.hrms.core.utilities.results.SuccessDataResult;
+import cap_software.hrms.core.verification.EmailVerify;
 import cap_software.hrms.dataAccess.abstracts.JopSeekerDao;
 import cap_software.hrms.entities.concretes.contacts.PersonalInformation;
 import cap_software.hrms.entities.concretes.users.JopSeeker;
-import cap_software.hrms.entities.concretes.verifications.EmailVerification;
 import cap_software.hrms.entities.dtos.contactDtos.PersonalInformationDto;
 import cap_software.hrms.entities.dtos.userDtos.JopSeekerDto;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.AbstractConverter;
-import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.spi.MappingContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.sql.Date;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -42,74 +38,65 @@ public class JopSeekerManager implements JopSeekerService {
     private CheckValidPersonService checkValidPersonService;
 
     @Override
-    public DataResult<JopSeekerDto> addJopSeeker(JopSeekerDto jopSeekerDto) {
-
-
-
-
-
-
-
-        EmailVerification emailVerification= new EmailVerification();
-        emailVerification.setVerifed(false);
-        emailVerification.setExpiryDate(Date.valueOf("2021-06-01"));
-        emailVerification.setToken("n56+df54g56df455645d64fg56df4g5s" +
-                "d4f5s6f4s56f4sd5645w6e456sd4f56sd4f65sd4f56sf" +
-                "sd6s5ad56as4d6s4ad6+as4d6as45d56as4d56a4s5d64as5d4as56");
-
-
-        JopSeeker jopSeeker=modelMapper.map(jopSeekerDto,JopSeeker.class);
-        PersonalInformation information=modelMapper.map(jopSeekerDto.getPersonalInformationDto(), PersonalInformation.class);
-
-
-        jopSeeker.setUserNumber("JBSKR-"+ LocalDateTime.now());
-        information.setUser(jopSeeker);
-        jopSeeker.setPersonalInformation(information);
-        jopSeeker.setEmailVerification(emailVerification);
-
-
-
-
-
-        jopSeekerDao.save(jopSeeker);
-
-        JopSeekerDto resJopSeekerDto=modelMapper.map(jopSeeker,JopSeekerDto.class);
-        PersonalInformationDto resInformationDto=modelMapper.map(jopSeeker.getPersonalInformation(), PersonalInformationDto.class);
-
-        resJopSeekerDto.setPersonalInformationDto(resInformationDto);
-
-
-
-        return new SuccessDataResult<JopSeekerDto>(resJopSeekerDto,"Kullanıcı Eklemesi Başarılı");
-
-
-
-    }
+    public DataResult<JopSeekerDto> addJopSeeker(JopSeekerDto jopSeekerDto)
+    {   JopSeeker jopSeeker=convertToJobSeeker(jopSeekerDto);
+       // jopSeeker.setUserNumber("JBSKR-"+new Random().nextInt());
+        jopSeeker.setEmailVerification(EmailVerify.getEmailVerify());
+        return new SuccessDataResult<JopSeekerDto>(convertToJopSeekerDto(jopSeekerDao.save(jopSeeker)),"Kullanıcı Eklemesi Başarılı");}
 
     @Override
-    public DataResult<List<JopSeekerDto>> getAllJobSeekers() {
-
-        List<JopSeekerDto> jobSeekerDtos= new ArrayList<JopSeekerDto>();
-        JopSeekerDto jopSeekerDto = null;
-        PersonalInformationDto personalInformationDto=null;
-
-       for(JopSeeker jopSeeker:jopSeekerDao.findAll())
-       {
-           jopSeekerDto=modelMapper.map(jopSeeker,JopSeekerDto.class);
-           personalInformationDto=modelMapper.map(jopSeeker.getPersonalInformation(),PersonalInformationDto.class);
-           jopSeekerDto.setPersonalInformationDto(personalInformationDto);
-           jobSeekerDtos.add(jopSeekerDto);
-
-       }
-
-        return new SuccessDataResult<List<JopSeekerDto>>(jobSeekerDtos,"Kullanıcı Listesi Getirildi");
+    public DataResult<List<JopSeekerDto>> addJopSeeker(List<JopSeekerDto> jopSeekerDtos) {
+        Iterable<JopSeeker> jbs=jopSeekerDtos.stream().map(j->convertToJobSeeker(j)).collect(Collectors.toList());
+        return new SuccessDataResult<List<JopSeekerDto>>(jopSeekerDao.saveAll(jbs).stream().map(j->convertToJopSeekerDto(j)).collect(Collectors.toList()),"Liste Basşarıyla Eklenmiştir");
     }
 
     @Override
     public DataResult<JopSeekerDto> getById(int id) {
+        return new SuccessDataResult<>(convertToJopSeekerDto(jopSeekerDao.findById(id).get()),"Kullanıcı Başarıyla Getirildi");
+    }
+
+    @Override
+    public DataResult<List<JopSeekerDto>> getAllJobSeekers()
+    {return new SuccessDataResult<List<JopSeekerDto>>(jopSeekerDao.findAll().stream().map(j->convertToJopSeekerDto(j)).collect(Collectors.toList()),"Kullanıcı Listesi Getirildi");}
+
+
+    @Override
+    public DataResult<JopSeekerDto> deleteById(int id) {
+        JopSeeker  jopSeeker=jopSeekerDao.findById(id).get();
+        jopSeekerDao.deleteById(id);
+        return new SuccessDataResult<>(convertToJopSeekerDto(jopSeeker),"Kullanıcı Başarıyla Silindi");
+    }
+
+    @Override
+    public DataResult<JopSeekerDto> delete(JopSeekerDto jopSeekerDto) {
+        JopSeeker  jopSeeker=convertToJobSeeker(jopSeekerDto);
+        jopSeekerDao.delete(jopSeeker);
+        return new SuccessDataResult<>(convertToJopSeekerDto(jopSeeker),"Kullanıcı Başarıyla Silindi");
+    }
+
+    @Override
+    public DataResult<JopSeekerDto> updateById(int id) {
+        return null;
+    }
+
+    @Override
+    public DataResult<JopSeekerDto> update(JopSeekerDto jopSeekerDto) {
         return null;
     }
 
 
+    private JopSeeker convertToJobSeeker(JopSeekerDto jopSeekerDto)
+    {   JopSeeker jopSeeker=modelMapper.map(jopSeekerDto,JopSeeker.class);
+        PersonalInformation information=modelMapper.map(jopSeekerDto.getPersonalInformationDto(), PersonalInformation.class);
+        information.setUser(jopSeeker);
+        jopSeeker.setPersonalInformation(information); return jopSeeker;}
 
+
+    private JopSeekerDto convertToJopSeekerDto(JopSeeker jopSeeker)
+    {
+        JopSeekerDto resJopSeekerDto=modelMapper.map(jopSeeker,JopSeekerDto.class);
+        PersonalInformationDto resInformationDto=modelMapper.map(jopSeeker.getPersonalInformation(), PersonalInformationDto.class);
+        resJopSeekerDto.setPersonalInformationDto(resInformationDto);
+        return resJopSeekerDto;
+    }
 }

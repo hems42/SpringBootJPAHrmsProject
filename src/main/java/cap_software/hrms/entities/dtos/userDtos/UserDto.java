@@ -16,6 +16,9 @@ import javax.validation.constraints.NotNull;
 @ValidPasswordMatches
 public class UserDto {
 
+
+    private int id;
+
     @Email
     @NotBlank
     @NotNull

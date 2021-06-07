@@ -7,12 +7,12 @@ package cap_software.hrms.entities.concretes.users;
 import cap_software.hrms.entities.concretes.utils.DateParametres;
 import lombok.*;
 import javax.persistence.*;
-
+import java.util.Random;
 
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
+//@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Entity
 @Table(name="Users",
 
@@ -58,6 +58,20 @@ public abstract class User {
     private DateParametres dateParametres= new DateParametres();
 
 
-
+    public User() {
+        Random random= new Random();
+        if(getClass()==JopSeeker.class)
+        {
+            userNumber="JBSKR-"+random.nextInt();
+        }
+        else if(getClass()==Emplooyer.class)
+        {
+            userNumber="EMPLYR-"+random.nextInt();
+        }
+        else
+        {
+            userNumber="ADMN-"+random.nextInt();
+        }
     }
+}
 

@@ -4,6 +4,7 @@ import cap_software.hrms.entities.concretes.contacts.PersonalInformation;
 
 import cap_software.hrms.entities.concretes.cv.CurriculumVitae;
 import cap_software.hrms.entities.concretes.utils.AuthParametres;
+import cap_software.hrms.entities.concretes.utils.DateParametres;
 import cap_software.hrms.entities.concretes.verifications.EmailVerification;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,8 +17,8 @@ import java.util.List;
 
 @AllArgsConstructor
 @Data
-@NoArgsConstructor
 @Entity
+@NoArgsConstructor
 @Table(name="JopSeekers")
 @PrimaryKeyJoinColumn(name="UserId", referencedColumnName="UserId")
 public class JopSeeker extends User implements Serializable  {
