@@ -2,6 +2,7 @@ package cap_software.hrms.bussiness.concretes;
 
 
 import cap_software.hrms.bussiness.abstracts.JopSeekerService;
+import cap_software.hrms.core.convertors.DtoConvertor;
 import cap_software.hrms.core.utilities.outSourceServiceAdapter.abstracts.CheckValidPersonService;
 import cap_software.hrms.core.utilities.outSourceServiceAdapter.abstracts.EmailService;
 import cap_software.hrms.core.utilities.results.DataResult;
@@ -16,9 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 
@@ -74,14 +73,35 @@ public class JopSeekerManager implements JopSeekerService {
         return new SuccessDataResult<>(convertToJopSeekerDto(jopSeeker),"Kullanıcı Başarıyla Silindi");
     }
 
+
     @Override
-    public DataResult<JopSeekerDto> updateById(int id) {
-        return null;
+    public DataResult<JopSeekerDto> update(JopSeekerDto jopSeekerDto) {/*
+        convertToPersonalInformationDto(jopSeekerDao.updatePersonalInformation(jopSeekerDto.getId(),
+        convertToPersonalInformation(jopSeekerDto.getPersonalInformationDto())));*/
+
+        JopSeeker jopSeeker=jopSeekerDao.findById(jopSeekerDto.getId()).get();
+
+        PersonalInformation information=convertToPersonalInformation(jopSeekerDto.getPersonalInformationDto());
+        information.setUser(jopSeeker);
+        jopSeeker.setPersonalInformation(information);
+
+        jopSeekerDao.save(jopSeeker);//updatePersonalInformation(jopSeeker.getId(),jopSeeker.getPersonalInformation());
+
+
+        return new SuccessDataResult<>(convertToJopSeekerDto(jopSeekerDao.findById(jopSeekerDto.getId()).get()),"Kişisel Bilgi Güncellendi");
     }
 
     @Override
-    public DataResult<JopSeekerDto> update(JopSeekerDto jopSeekerDto) {
-        return null;
+    public DataResult<PersonalInformationDto> update(int id,PersonalInformationDto personalInformationDto) {
+
+        JopSeeker jopSeeker=getJopSeeker(id);
+
+        PersonalInformation  personalInformation=convertToPersonalInformation(personalInformationDto);
+        personalInformation.setUser(jopSeeker);
+        personalInformation.setId(jopSeeker.getPersonalInformation().getId());
+        jopSeeker.setPersonalInformation(personalInformation);
+        jopSeekerDao.save(jopSeeker);
+        return new SuccessDataResult<>(convertToPersonalInformationDto(getJopSeeker(id).getPersonalInformation()),"Kişisel Bilgi Güncellendi");
     }
 
 
@@ -99,4 +119,23 @@ public class JopSeekerManager implements JopSeekerService {
         resJopSeekerDto.setPersonalInformationDto(resInformationDto);
         return resJopSeekerDto;
     }
+
+
+    private PersonalInformation convertToPersonalInformation(PersonalInformationDto personalInformationDto)
+    {
+        PersonalInformation resInformation=modelMapper.map(personalInformationDto, PersonalInformation.class);
+        return resInformation;
+    }
+
+    private PersonalInformationDto convertToPersonalInformationDto(PersonalInformation personalInformation)
+    {
+        PersonalInformationDto resInformationDto=modelMapper.map(personalInformation, PersonalInformationDto.class);
+        return resInformationDto;
+    }
+
+    private JopSeeker getJopSeeker(int id)
+    {
+        return  jopSeekerDao.getById(id);
+    }
+
 }

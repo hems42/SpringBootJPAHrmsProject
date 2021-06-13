@@ -51,8 +51,10 @@ public class PersonalInformation implements Serializable {
     private DateParametres dateParametres=new DateParametres();
 
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "UserId",referencedColumnName = "UserId",nullable = false,foreignKey = @ForeignKey(name = "FK_PERSONALINFORMATION_USER",value = ConstraintMode.CONSTRAINT))
+    @OneToOne(cascade ={CascadeType.PERSIST,CascadeType.MERGE})
+    @JoinColumn(name = "UserId",referencedColumnName = "UserId",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "FK_PERSONALINFORMATION_USER",value = ConstraintMode.CONSTRAINT),unique = true)
     private User user;
 
 

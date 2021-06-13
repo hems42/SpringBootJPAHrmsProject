@@ -2,6 +2,7 @@ package cap_software.hrms.api.controllers;
 
 import cap_software.hrms.bussiness.abstracts.JopSeekerService;
 import cap_software.hrms.core.utilities.results.ErrorDataResult;
+import cap_software.hrms.entities.dtos.contactDtos.PersonalInformationDto;
 import cap_software.hrms.entities.dtos.userDtos.JopSeekerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,8 +37,18 @@ public class JobSeekersController {
     }
 
 
+    @PostMapping("update")
+     public ResponseEntity<?> updatePersonalInformation(@RequestBody JopSeekerDto jopSeekerDto)
+    {
+        return  ResponseEntity.ok(jopSeekerService.update(jopSeekerDto));
+    }
 
 
+    @PostMapping("updateById")
+    public ResponseEntity<?> updatePersonalInformation(@RequestParam int id,@RequestBody PersonalInformationDto personalInformationDto)
+    {
+        return  ResponseEntity.ok(jopSeekerService.update(id,personalInformationDto));
+    }
 
 
 

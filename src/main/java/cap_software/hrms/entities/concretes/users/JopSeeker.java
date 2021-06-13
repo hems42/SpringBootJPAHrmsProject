@@ -1,15 +1,13 @@
 package cap_software.hrms.entities.concretes.users;
 
-import cap_software.hrms.entities.concretes.contacts.PersonalInformation;
 
+import cap_software.hrms.entities.concretes.contacts.PersonalInformation;
 import cap_software.hrms.entities.concretes.cv.CurriculumVitae;
 import cap_software.hrms.entities.concretes.utils.AuthParametres;
-import cap_software.hrms.entities.concretes.utils.DateParametres;
 import cap_software.hrms.entities.concretes.verifications.EmailVerification;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -23,7 +21,7 @@ import java.util.List;
 @PrimaryKeyJoinColumn(name="UserId", referencedColumnName="UserId")
 public class JopSeeker extends User implements Serializable  {
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user",targetEntity = PersonalInformation.class)
     @JoinColumn(name = "PersonalInformationId",unique = true,nullable = false)
     private PersonalInformation personalInformation;
 
