@@ -8,6 +8,7 @@ import cap_software.hrms.entities.concretes.JopAdvertisement;
 import cap_software.hrms.entities.concretes.users.Admin;
 import cap_software.hrms.entities.concretes.users.Emplooyer;
 import cap_software.hrms.entities.concretes.users.User;
+import cap_software.hrms.entities.mapstructExams.*;
 import cap_software.hrms.outSourceServices.mernis.IWWKPSPublicSoap;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -27,6 +28,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,45 +41,26 @@ public class HrmsApplication {
         SpringApplication.run(HrmsApplication.class, args);
 
 
+        Parent parent= new Parent("Fadimana","PEKER",55);
 
 
 
 
-        //   EntityManagerFactory factory= Persistence.createEntityManagerFactory("default");
+        ParentMapper mapper =ParentMapper.INSTANCE_PARENT_MAPPER;
+
+        System.out.println("DTO dan gelen : "+mapper.fromParent(parent));
 
 
 
+        Child child= new Child("Yusuf","PEKER",20,parent);
 
+        ChildMapper mapper1=ChildMapper.INSTANCE_CHILD_MAPPER;
 
-        /*
-        *
-        * @RunWith(SpringRunner.class)
-@ContextConfiguration(classes= Application.class)
-@DataJpaTest
-@ActiveProfiles("test")
-public class UserServicesTests {
+        ChildDto childDto=mapper1.fromChild(child);
 
-@Autowired
-private TestEntityManager testEntityManager;
+        System.out.println("gelen childDto bilgileri: "+childDto);
 
-@Autowired
-private UserRepository userRepository;
-
-@Test
-public void oops() {
-    User user = new User();
-    user.setUsername("Toshko");
-    //EMAIL IS REQUIRED:
-    //user.setEmail("OPS");
-    this.testEntityManager.persist(user);
-
-    //HERE COMES TE EXCEPTION BECAUSE THE EMAIL FIELD IN TE DATABASE IS REQUIRED :
-    this.userRepository.findUserByUsername("Toshko");
-
-    System.out.println();
-}
-}
-        * */
+        System.out.println("dönüşen child bilgileri"+mapper1.toChild(childDto));
 
 
 
@@ -94,20 +77,3 @@ public void oops() {
     }
 
 }
-/*
-    @Component
-    public class MyFancyComponent {
-        @PersistenceContext
-        private EntityManager entityManager;
-
-        public void doSomethingFancy() {
-            // public SessionFactory API
-            final SessionFactory sf = entityManager
-                    .unwrap( Session.class ).getSessionFactory();
-
-
-            // public SessionFactoryImplementor SPI
-            final SessionFactoryImplementor sfi = entityManager
-                    .unwrap( SessionImplementor.class ).getFactory();
-        }
-    }*/
