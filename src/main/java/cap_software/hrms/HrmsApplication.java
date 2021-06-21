@@ -2,11 +2,14 @@ package cap_software.hrms;
 
 
 import cap_software.hrms.bussiness.concretes.UserManager;
+import cap_software.hrms.core.mappers.JopSeekerMapper;
 import cap_software.hrms.core.utilities.outSourceServiceAdapter.abstracts.CheckValidPersonService;
 import cap_software.hrms.core.utilities.outSourceServiceAdapter.concretes.CheckValidPersonMernisAdapter;
 import cap_software.hrms.entities.concretes.JopAdvertisement;
+import cap_software.hrms.entities.concretes.contacts.PersonalInformation;
 import cap_software.hrms.entities.concretes.users.Admin;
 import cap_software.hrms.entities.concretes.users.Emplooyer;
+import cap_software.hrms.entities.concretes.users.JopSeeker;
 import cap_software.hrms.entities.concretes.users.User;
 import cap_software.hrms.entities.mapstructExams.*;
 import cap_software.hrms.outSourceServices.mernis.IWWKPSPublicSoap;
@@ -41,28 +44,22 @@ public class HrmsApplication {
         SpringApplication.run(HrmsApplication.class, args);
 
 
-        Parent parent= new Parent("Fadimana","PEKER",55);
+        PersonalInformation information= new PersonalInformation();
+        information.setSex("ERKEK");
+        information.setName("ALİ");
+        information.setSurname("YILMAZ");
+        information.setNationalIdentityNumber("00000000000");
 
 
+        JopSeeker jopSeeker= new JopSeeker();
+        jopSeeker.setEmail("deneme@gmail.com");
+        jopSeeker.setPassword("00055554444");
+        jopSeeker.setUserNumber("JBSKR001");
+        information.setUser(jopSeeker);
+        jopSeeker.setPersonalInformation(information);
 
 
-        ParentMapper mapper =ParentMapper.INSTANCE_PARENT_MAPPER;
-
-        System.out.println("DTO dan gelen : "+mapper.fromParent(parent));
-
-
-
-        Child child= new Child("Yusuf","PEKER",20,parent);
-
-        ChildMapper mapper1=ChildMapper.INSTANCE_CHILD_MAPPER;
-
-        ChildDto childDto=mapper1.fromChild(child);
-
-        System.out.println("gelen childDto bilgileri: "+childDto);
-
-        System.out.println("dönüşen child bilgileri"+mapper1.toChild(childDto));
-
-
+        System.out.println("dto dan gelen : "+ JopSeekerMapper.INSTANCE_JOP_SEEKER_MAPPER.fromJopSeeker(jopSeeker).toString());
 
 
     }

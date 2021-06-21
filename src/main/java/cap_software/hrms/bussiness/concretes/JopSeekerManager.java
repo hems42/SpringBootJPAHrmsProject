@@ -13,6 +13,8 @@ import cap_software.hrms.entities.concretes.contacts.PersonalInformation;
 import cap_software.hrms.entities.concretes.users.JopSeeker;
 import cap_software.hrms.entities.dtos.contactDtos.PersonalInformationDto;
 import cap_software.hrms.entities.dtos.userDtos.JopSeekerDto;
+import cap_software.hrms.entities.mapstructExams.Parent;
+import cap_software.hrms.entities.mapstructExams.ParentMapper;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +33,22 @@ public class JopSeekerManager implements JopSeekerService {
 
 
 
-
     private final ModelMapper modelMapper;
+    private final ParentMapper  mapper;
+
+
+
     private EmailService  emailService;
     private CheckValidPersonService checkValidPersonService;
 
     @Override
     public DataResult<JopSeekerDto> addJopSeeker(JopSeekerDto jopSeekerDto)
-    {   JopSeeker jopSeeker=convertToJobSeeker(jopSeekerDto);
+    {
+        Parent parent=new Parent("hh","ll",22);
+
+        System.out.println("dto dan gelen :"+mapper.fromParent(parent));
+
+        JopSeeker jopSeeker=convertToJobSeeker(jopSeekerDto);
        // jopSeeker.setUserNumber("JBSKR-"+new Random().nextInt());
         jopSeeker.setEmailVerification(EmailVerify.getEmailVerify());
         return new SuccessDataResult<JopSeekerDto>(convertToJopSeekerDto(jopSeekerDao.save(jopSeeker)),"Kullanıcı Eklemesi Başarılı");}
