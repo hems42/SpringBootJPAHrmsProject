@@ -17,26 +17,7 @@ public class HrmsApplication {
     public static void main(String[] args) {
         SpringApplication.run(HrmsApplication.class, args);
 
-/*
 
-        PersonalInformation information= new PersonalInformation();
-        information.setSex("ERKEK");
-        information.setName("ALİ");
-        information.setSurname("YILMAZ");
-        information.setNationalIdentityNumber("00000000000");
-
-
-        JopSeeker jopSeeker= new JopSeeker();
-        jopSeeker.setEmail("deneme@gmail.com");
-        jopSeeker.setPassword("00055554444");
-        jopSeeker.setUserNumber("JBSKR001");
-        information.setUser(jopSeeker);
-        jopSeeker.setPersonalInformation(information);
-
-
-        System.out.println("dto dan gelen : "+ JopSeekerMapper.INSTANCE_JOP_SEEKER_MAPPER.fromJopSeeker(jopSeeker).toString());
-
-*/
 
     }
 
