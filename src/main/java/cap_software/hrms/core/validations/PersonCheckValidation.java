@@ -1,7 +1,7 @@
 package cap_software.hrms.core.validations;
 
 import cap_software.hrms.core.utilities.outSourceServiceAdapter.abstracts.CheckValidPersonService;
-import cap_software.hrms.entities.dtos.contactDtos.PersonalInformationDto;
+import cap_software.hrms.core.dto.contactDtos.PersonalInformationDto;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 

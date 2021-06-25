@@ -2,56 +2,48 @@ package cap_software.hrms.bussiness.concretes;
 
 
 import cap_software.hrms.bussiness.abstracts.JopSeekerService;
-import cap_software.hrms.core.convertors.DtoConvertor;
-import cap_software.hrms.core.utilities.outSourceServiceAdapter.abstracts.CheckValidPersonService;
-import cap_software.hrms.core.utilities.outSourceServiceAdapter.abstracts.EmailService;
 import cap_software.hrms.core.utilities.results.DataResult;
 import cap_software.hrms.core.utilities.results.SuccessDataResult;
 import cap_software.hrms.core.verification.EmailVerify;
 import cap_software.hrms.dataAccess.abstracts.JopSeekerDao;
 import cap_software.hrms.entities.concretes.contacts.PersonalInformation;
 import cap_software.hrms.entities.concretes.users.JopSeeker;
-import cap_software.hrms.entities.dtos.contactDtos.PersonalInformationDto;
-import cap_software.hrms.entities.dtos.userDtos.JopSeekerDto;
-import cap_software.hrms.entities.mapstructExams.Parent;
-import cap_software.hrms.entities.mapstructExams.ParentMapper;
-import lombok.RequiredArgsConstructor;
+import cap_software.hrms.core.dto.contactDtos.PersonalInformationDto;
+import cap_software.hrms.core.dto.userDtos.JopSeekerDto;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
 
 @Service
-@RequiredArgsConstructor
 public class JopSeekerManager implements JopSeekerService {
 
-    @Autowired
+
     private  JopSeekerDao  jopSeekerDao;
 
 
 
 
     private final ModelMapper modelMapper;
-    private final ParentMapper  mapper;
 
 
+    public JopSeekerManager(JopSeekerDao jopSeekerDao, ModelMapper modelMapper) {
+        this.jopSeekerDao = jopSeekerDao;
+        this.modelMapper = modelMapper;
 
-    private EmailService  emailService;
-    private CheckValidPersonService checkValidPersonService;
+    }
 
     @Override
     public DataResult<JopSeekerDto> addJopSeeker(JopSeekerDto jopSeekerDto)
     {
-        Parent parent=new Parent("hh","ll",22);
 
-        System.out.println("dto dan gelen :"+mapper.fromParent(parent));
+
 
         JopSeeker jopSeeker=convertToJobSeeker(jopSeekerDto);
        // jopSeeker.setUserNumber("JBSKR-"+new Random().nextInt());
         jopSeeker.setEmailVerification(EmailVerify.getEmailVerify());
-        return new SuccessDataResult<JopSeekerDto>(convertToJopSeekerDto(jopSeekerDao.save(jopSeeker)),"Kullanıcı Eklemesi Başarılı");}
+        return new SuccessDataResult<>(convertToJopSeekerDto(jopSeekerDao.save(jopSeeker)), "Kullanıcı Eklemesi Başarılı");}
 
     @Override
     public DataResult<List<JopSeekerDto>> addJopSeeker(List<JopSeekerDto> jopSeekerDtos) {

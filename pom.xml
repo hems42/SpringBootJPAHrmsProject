@@ -14,28 +14,35 @@
     <name>hrms</name>
     <description>Demo project for Spring Boot</description>
 
-    <properties>
-        <java.version>11</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
-        <org.projectlombok.version>1.18.20</org.projectlombok.version>
-        <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
-    </properties>
+        <properties>
+            <java.version>11</java.version>
+            <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+            <spring.validation.version>2.4.5</spring.validation.version>
+            <mapstruct.version>1.4.2.Final</mapstruct.version>
+            <model-mapper.version>2.4.4</model-mapper.version>
+            <lombok.version>1.18.20</lombok.version>
+            <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+
+        </properties>
 
 
         <dependencies>
 
+            <!--SPRING-DEPENDENCIES-->
+
+            <!--spring-boot-starter-data-jpa-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-jpa</artifactId>
             </dependency>
 
-
+            <!--spring-boot-starter-web-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
             </dependency>
 
+            <!--spring-boot-devtools-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-devtools</artifactId>
@@ -43,18 +50,52 @@
                 <optional>true</optional>
             </dependency>
 
-            <dependency>
-                <groupId>org.postgresql</groupId>
-                <artifactId>postgresql</artifactId>
-                <scope>runtime</scope>
-            </dependency>
-
+            <!--spring-boot-starter-test-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
                 <scope>test</scope>
             </dependency>
 
+
+            <!-- spring-validation-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-validation</artifactId>
+                <version>${spring.validation.version}</version>
+            </dependency>
+
+
+
+
+            <!--DATABASE-DEPENDENCIES-->
+
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <scope>runtime</scope>
+            </dependency>
+
+
+
+
+
+
+            <!--UTIL-DEPENDENCIES-->
+
+            <!-- model-mapper-->
+            <dependency>
+                <groupId>org.modelmapper</groupId>
+                <artifactId>modelmapper</artifactId>
+                <version>${model-mapper.version}</version>
+            </dependency>
+
+            <!-- mapstruct-->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
 
             <!-- Swagger2-->
             <dependency>
@@ -63,65 +104,28 @@
                 <version>2.9.2</version>
             </dependency>
 
+            <!-- Swagger-ui-->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>2.9.2</version>
             </dependency>
 
-            <!-- spring validation-->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-validation</artifactId>
-                <version>2.4.5</version>
-            </dependency>
-
-            <!-- model mapper dependency-->
-            <dependency>
-                <groupId>org.modelmapper</groupId>
-                <artifactId>modelmapper</artifactId>
-                <version>2.4.4</version>
-            </dependency>
-
-            <!-- mapstruct dependency -->
-            <dependency>
-                <groupId>org.mapstruct</groupId>
-                <artifactId>mapstruct</artifactId>
-                <version>${org.mapstruct.version}</version>
-            </dependency>
-
-            <!-- lombok dependencies should not end up on classpath -->
+            <!-- lombok-->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>${org.projectlombok.version}</version>
+                <version>${lombok.version}</version>
                 <scope>provided</scope>
             </dependency>
 
 
 
-            <!-- passay password validation-->
-            <dependency>
-                <groupId>org.passay</groupId>
-                <artifactId>passay</artifactId>
-                <version>1.6.0</version>
-            </dependency>
 
 
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.17</version>
-            </dependency>
+            <!--TEST-DEPENDENCIES-->
 
 
-
-            <!-- google guava-->
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>28.2-android</version>
-            </dependency>
 
 
 
@@ -161,12 +165,12 @@
                             <path>
                                 <groupId>org.mapstruct</groupId>
                                 <artifactId>mapstruct-processor</artifactId>
-                                <version>${org.mapstruct.version}</version>
+                                <version>${mapstruct.version}</version>
                             </path>
                             <path>
                                 <groupId>org.projectlombok</groupId>
                                 <artifactId>lombok</artifactId>
-                                <version>${org.projectlombok.version}</version>
+                                <version>${lombok.version}</version>
                             </path>
                             <path>
                                 <groupId>org.projectlombok</groupId>

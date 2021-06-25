@@ -1,14 +1,9 @@
-package cap_software.hrms.entities.dtos.contactDtos;
+package cap_software.hrms.core.dto.contactDtos;
 
 
-import cap_software.hrms.core.validations.ValidRealPerson;
-import cap_software.hrms.entities.concretes.contacts.PersonalInformation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.modelmapper.AbstractConverter;
-import org.modelmapper.Converter;
-import org.modelmapper.Converters;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

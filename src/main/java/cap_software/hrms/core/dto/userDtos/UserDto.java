@@ -1,4 +1,4 @@
-package cap_software.hrms.entities.dtos.userDtos;
+package cap_software.hrms.core.dto.userDtos;
 
 import cap_software.hrms.core.validations.ValidPasswordMatches;
 import lombok.AllArgsConstructor;

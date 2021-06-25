@@ -1,9 +1,8 @@
-package cap_software.hrms.entities.dtos.verificationDtos;
+package cap_software.hrms.core.dto.verificationDtos;
 
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor

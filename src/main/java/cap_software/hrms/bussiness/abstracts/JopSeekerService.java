@@ -1,9 +1,8 @@
 package cap_software.hrms.bussiness.abstracts;
 
 import cap_software.hrms.core.utilities.results.DataResult;
-import cap_software.hrms.entities.concretes.contacts.PersonalInformation;
-import cap_software.hrms.entities.dtos.contactDtos.PersonalInformationDto;
-import cap_software.hrms.entities.dtos.userDtos.JopSeekerDto;
+import cap_software.hrms.core.dto.contactDtos.PersonalInformationDto;
+import cap_software.hrms.core.dto.userDtos.JopSeekerDto;
 
 import java.util.List;
 

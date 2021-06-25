@@ -1,4 +1,4 @@
-package cap_software.hrms.entities.dtos.userDtos;
+package cap_software.hrms.core.dto.userDtos;
 
 public class EmplooyerDto {
 

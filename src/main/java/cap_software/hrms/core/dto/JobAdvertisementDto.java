@@ -1,4 +1,4 @@
-package cap_software.hrms.entities.dtos;
+package cap_software.hrms.core.dto;
 
 public class JobAdvertisementDto {
         /*

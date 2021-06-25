@@ -1,7 +1,7 @@
 package cap_software.hrms.core.validations;
 
 import com.google.common.base.Joiner;
-import org.passay.*;
+
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -18,7 +18,7 @@ public class PasswordConstraintValidation implements ConstraintValidator<ValidPa
 
     @Override
     public boolean isValid(String password, ConstraintValidatorContext context) {
-        List<Rule> rules= new ArrayList<>();
+      /*  List<Rule> rules= new ArrayList<>();
         rules.add(new LengthRule(5,30));
         rules.add(new RepeatCharactersRule());
         rules.add(new UsernameRule());
@@ -36,9 +36,9 @@ public class PasswordConstraintValidation implements ConstraintValidator<ValidPa
 
          context.buildConstraintViolationWithTemplate(Joiner.on("\n")
                  .join(passwordValidator.getMessages(result))).addConstraintViolation();
+
+*/
         return false;
-
-
 
     }
 }

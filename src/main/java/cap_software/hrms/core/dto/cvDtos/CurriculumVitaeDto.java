@@ -1,4 +1,4 @@
-package cap_software.hrms.entities.dtos.cvDtos;
+package cap_software.hrms.core.dto.cvDtos;
 
 
 

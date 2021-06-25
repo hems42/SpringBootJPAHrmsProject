@@ -2,8 +2,8 @@ package cap_software.hrms.api.controllers;
 
 import cap_software.hrms.bussiness.abstracts.JopSeekerService;
 import cap_software.hrms.core.utilities.results.ErrorDataResult;
-import cap_software.hrms.entities.dtos.contactDtos.PersonalInformationDto;
-import cap_software.hrms.entities.dtos.userDtos.JopSeekerDto;
+import cap_software.hrms.core.dto.contactDtos.PersonalInformationDto;
+import cap_software.hrms.core.dto.userDtos.JopSeekerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

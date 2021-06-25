@@ -2,7 +2,6 @@ package cap_software.hrms.dataAccess.abstracts;
 
 import cap_software.hrms.entities.concretes.contacts.PersonalInformation;
 import cap_software.hrms.entities.concretes.users.JopSeeker;
-import cap_software.hrms.entities.dtos.contactDtos.PersonalInformationDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

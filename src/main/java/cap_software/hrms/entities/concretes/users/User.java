@@ -12,10 +12,8 @@ import java.util.Random;
 
 @Data
 @AllArgsConstructor
-//@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Entity
 @Table(name="Users",
-
 uniqueConstraints ={
         @UniqueConstraint(columnNames = "UserNumber", name = "UK_USER_NUMBER"),
         @UniqueConstraint(columnNames = "Email", name = "UK_EMAİL_ADDRESS")

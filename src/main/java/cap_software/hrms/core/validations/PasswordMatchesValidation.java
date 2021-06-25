@@ -1,7 +1,7 @@
 package cap_software.hrms.core.validations;
 
 
-import cap_software.hrms.entities.dtos.userDtos.UserDto;
+import cap_software.hrms.core.dto.userDtos.UserDto;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
