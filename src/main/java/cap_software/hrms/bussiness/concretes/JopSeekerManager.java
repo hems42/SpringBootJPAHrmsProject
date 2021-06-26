@@ -6,8 +6,8 @@ import cap_software.hrms.core.utilities.results.DataResult;
 import cap_software.hrms.core.utilities.results.SuccessDataResult;
 import cap_software.hrms.core.verification.EmailVerify;
 import cap_software.hrms.dataAccess.abstracts.JopSeekerDao;
-import cap_software.hrms.entities.concretes.contacts.PersonalInformation;
-import cap_software.hrms.entities.concretes.users.JopSeeker;
+import cap_software.hrms.entities.contacts.PersonalInformation;
+import cap_software.hrms.entities.users.JopSeeker;
 import cap_software.hrms.core.dto.contactDtos.PersonalInformationDto;
 import cap_software.hrms.core.dto.userDtos.JopSeekerDto;
 import org.modelmapper.ModelMapper;
@@ -20,19 +20,21 @@ import java.util.stream.Collectors;
 public class JopSeekerManager implements JopSeekerService {
 
 
-    private  JopSeekerDao  jopSeekerDao;
-
-
-
-
+    private final JopSeekerDao  jopSeekerDao;
     private final ModelMapper modelMapper;
-
 
     public JopSeekerManager(JopSeekerDao jopSeekerDao, ModelMapper modelMapper) {
         this.jopSeekerDao = jopSeekerDao;
         this.modelMapper = modelMapper;
 
     }
+
+
+
+
+
+
+
 
     @Override
     public DataResult<JopSeekerDto> addJopSeeker(JopSeekerDto jopSeekerDto)

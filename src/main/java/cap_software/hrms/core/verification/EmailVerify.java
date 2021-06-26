@@ -1,6 +1,6 @@
 package cap_software.hrms.core.verification;
 
-import cap_software.hrms.entities.concretes.verifications.EmailVerification;
+import cap_software.hrms.entities.verifications.EmailVerification;
 
 import java.sql.Date;
 

@@ -1,12 +1,9 @@
 package cap_software.hrms.dataAccess.abstracts;
 
-import cap_software.hrms.core.utilities.results.DataResult;
-import cap_software.hrms.entities.concretes.JopAdvertisement;
-import cap_software.hrms.entities.concretes.users.Emplooyer;
+import cap_software.hrms.entities.JopAdvertisement;
+import cap_software.hrms.entities.users.Emplooyer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 

@@ -17,6 +17,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class PersonalInformationDto {
 
+    private int id;
 
     @NotBlank
     @NotNull
