@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface EmplooyerDao extends JpaRepository<Emplooyer,Integer> {
 
-    @Query("From Emplooyer where authParametres.isActive=:isActive")
+    @Query("From Emplooyer where authParameters.isActive=:isActive")
     List<Emplooyer> getByIsActive(boolean isActive);
 
     @Query("Select e.jopAdvertisementies From Emplooyer e where e.id=:id")

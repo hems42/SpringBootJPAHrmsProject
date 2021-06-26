@@ -1,14 +1,14 @@
 package cap_software.hrms.core.dto.contactDtos;
 
 
+import cap_software.hrms.core.dto.utilDtos.DateParametersDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Date;
+import java.time.LocalDate;
 
 
 
@@ -36,12 +36,13 @@ public class PersonalInformationDto {
 
 
     @NotNull
-    private Date birthOfDate;
+    private LocalDate birthOfDate;
 
     @NotBlank
     @NotNull
     private String sex;
 
+    private DateParametersDto dateParametersDto;
 
 
 }

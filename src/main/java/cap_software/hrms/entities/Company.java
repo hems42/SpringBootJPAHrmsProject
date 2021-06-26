@@ -3,7 +3,7 @@ package cap_software.hrms.entities;
 import cap_software.hrms.entities.contacts.PhoneNumber;
 import cap_software.hrms.entities.contacts.WebSite;
 import cap_software.hrms.entities.users.Emplooyer;
-import cap_software.hrms.entities.utils.DateParametres;
+import cap_software.hrms.entities.utils.DateParameters;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,7 +32,7 @@ public class Company {
     private String companyDetails;
 
     @Embedded
-    DateParametres dataParametres;
+    DateParameters dataParametres;
 
 
 

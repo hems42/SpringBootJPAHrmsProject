@@ -1,6 +1,6 @@
 package cap_software.hrms.entities.contacts;
 
-import cap_software.hrms.entities.utils.DateParametres;
+import cap_software.hrms.entities.utils.DateParameters;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +20,7 @@ public class WebSite {
     private int id;
 
     @Embedded
-    private DateParametres dateParametres;
+    private DateParameters dateParameters;
 
     @Column(name="WebSite",length = 50,nullable = false,unique = true)
     private String webSite;

@@ -1,5 +1,6 @@
 package cap_software.hrms.core.dto.userDtos;
 
+import cap_software.hrms.core.dto.utilDtos.DateParametersDto;
 import cap_software.hrms.core.validations.ValidPasswordMatches;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,7 +30,6 @@ public class UserDto {
     @NotNull
     private  String password;
 
-    @NotBlank
-    @NotNull
-    private String matchingPassword;
+    private DateParametersDto dateParametersDto;
+
 }

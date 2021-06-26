@@ -1,7 +1,7 @@
 package cap_software.hrms.entities.users;
 import cap_software.hrms.entities.Company;
 import cap_software.hrms.entities.JopAdvertisement;
-import cap_software.hrms.entities.utils.AuthParametres;
+import cap_software.hrms.entities.utils.AuthParameters;
 import cap_software.hrms.entities.verifications.AdminVerification;
 import cap_software.hrms.entities.verifications.EmailVerification;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -50,7 +50,7 @@ public class Emplooyer extends User implements  Serializable{
     private List<JopAdvertisement> jopAdvertisementies= new ArrayList<>();
 
     @Embedded
-    private AuthParametres authParametres;
+    private AuthParameters authParameters;
 
 
     public void addAdvertisement(JopAdvertisement jopAdvertisement)

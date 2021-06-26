@@ -1,6 +1,6 @@
 package cap_software.hrms.entities;
 
-import cap_software.hrms.entities.utils.DateParametres;
+import cap_software.hrms.entities.utils.DateParameters;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,7 +34,7 @@ public class JopPosition {
    private List<Category> categoryList;
 
     @Embedded
-    private DateParametres dateParametres;
+    private DateParameters dateParameters;
 
 
 

@@ -28,7 +28,7 @@ public class PasswordMatchesValidation implements ConstraintValidator<ValidPassw
 
 
 
-            result=userDto.getPassword().equals(userDto.getMatchingPassword());
+           // result=userDto.getPassword().equals(userDto.getMatchingPassword());
         }
         else
         {

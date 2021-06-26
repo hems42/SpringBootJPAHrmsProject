@@ -1,7 +1,9 @@
 package cap_software.hrms.entities.contacts;
 
-import cap_software.hrms.entities.utils.DateParametres;
+import cap_software.hrms.entities.utils.DateParameters;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,6 +12,8 @@ import java.io.Serializable;
 
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="PhoneNumbers")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -25,7 +29,7 @@ public class PhoneNumber implements Serializable {
     private String phoneNumber;
 
     @Embedded
-    private DateParametres dateParametres;
+    private DateParameters dateParameters;
 }
 
 

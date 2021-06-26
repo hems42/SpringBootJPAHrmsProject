@@ -1,7 +1,7 @@
 package cap_software.hrms.entities.verifications;
 
 
-import cap_software.hrms.entities.utils.DateParametres;
+import cap_software.hrms.entities.utils.DateParameters;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -26,7 +26,7 @@ public class EmailVerification {
 
 
     @Embedded
-    private DateParametres dateParametres=new DateParametres();
+    private DateParameters dateParameters =new DateParameters();
 
 
     @Column(name="isVerified",updatable = false)

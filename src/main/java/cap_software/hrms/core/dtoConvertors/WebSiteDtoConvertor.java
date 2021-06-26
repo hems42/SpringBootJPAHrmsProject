@@ -7,11 +7,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class WebSiteDtoConvertor {
 
+    private final DateParametersDtoConvertor convertor;
+
+    public WebSiteDtoConvertor(DateParametersDtoConvertor convertor) {
+        this.convertor = convertor;
+    }
+
     public WebSite convert(WebSiteDto from)
     {
         return new WebSite(
                 from.getId(),
-                null,
+                convertor.convert(from.getDateParametersDto()),
                 from.getWebSite()
                 );
     }
@@ -20,6 +26,7 @@ public class WebSiteDtoConvertor {
     {
         return new WebSiteDto(
                 from.getId(),
-                from.getWebSite());
+                from.getWebSite(),
+                convertor.convert(from.getDateParameters()));
     }
 }

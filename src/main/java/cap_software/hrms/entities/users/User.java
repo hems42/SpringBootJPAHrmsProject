@@ -4,8 +4,10 @@ package cap_software.hrms.entities.users;
 
 
 
-import cap_software.hrms.entities.utils.DateParametres;
+import cap_software.hrms.entities.utils.BaseDateEntity;
+import cap_software.hrms.entities.utils.DateParameters;
 import lombok.*;
+
 import javax.persistence.*;
 import java.util.Random;
 
@@ -16,12 +18,12 @@ import java.util.Random;
 @Table(name="Users",
 uniqueConstraints ={
         @UniqueConstraint(columnNames = "UserNumber", name = "UK_USER_NUMBER"),
-        @UniqueConstraint(columnNames = "Email", name = "UK_EMAİL_ADDRESS")
+        @UniqueConstraint(columnNames = "Email", name = "UK_EMAIL_ADDRESS")
 
 }
 )
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class User {
+public abstract class User  {
 
 
     @Id
@@ -53,7 +55,7 @@ public abstract class User {
 
 
     @Embedded
-    private DateParametres dateParametres= new DateParametres();
+    private DateParameters dateParameters = new DateParameters();
 
 
     public User() {

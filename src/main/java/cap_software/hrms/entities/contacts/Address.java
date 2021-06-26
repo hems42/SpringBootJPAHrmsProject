@@ -1,7 +1,7 @@
 package cap_software.hrms.entities.contacts;
 
 import cap_software.hrms.entities.utils.City;
-import cap_software.hrms.entities.utils.DateParametres;
+import cap_software.hrms.entities.utils.DateParameters;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name="Adresses")
-public class Adress {
+public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +27,6 @@ public class Adress {
 
 
     @Embedded
-    private DateParametres dateParametres;
+    private DateParameters dateParameters;
 }
 

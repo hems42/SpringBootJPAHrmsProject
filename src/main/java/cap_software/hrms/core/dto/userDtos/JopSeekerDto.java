@@ -3,6 +3,7 @@ package cap_software.hrms.core.dto.userDtos;
 
 
 import cap_software.hrms.core.dto.contactDtos.PersonalInformationDto;
+import cap_software.hrms.core.dto.utilDtos.AuthParametersDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,7 @@ public class JopSeekerDto extends UserDto{
                 Kayıdın gerçekleşmesi için e-posta doğrulaması gerekir.
                 */
 
+    private AuthParametersDto authParametersDto;
 
     private PersonalInformationDto personalInformationDto;
 

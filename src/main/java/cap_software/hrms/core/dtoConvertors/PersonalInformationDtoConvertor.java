@@ -7,6 +7,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class PersonalInformationDtoConvertor {
 
+    private final DateParametersDtoConvertor convertor;
+
+    public PersonalInformationDtoConvertor(DateParametersDtoConvertor convertor) {
+        this.convertor = convertor;
+    }
+
     public PersonalInformation convert(PersonalInformationDto from)
     {
         return  new PersonalInformation(
@@ -16,7 +22,7 @@ public class PersonalInformationDtoConvertor {
                 from.getNationalIdentityNumber(),
                 from.getBirthOfDate(),
                  from.getSex().toString(),
-                null,
+                convertor.convert(from.getDateParametersDto()),
                 null);
     }
 
@@ -28,6 +34,7 @@ public class PersonalInformationDtoConvertor {
                 from.getSurname(),
                 from.getNationalIdentityNumber(),
                 from.getBirthOfDate(),
-                from.getSex().toString());
+                from.getSex(),
+                convertor.convert(from.getDateParameters()));
     }
 }

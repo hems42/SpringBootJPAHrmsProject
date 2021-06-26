@@ -12,10 +12,10 @@ import javax.persistence.Embeddable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Embeddable
-public class AuthParametres {
+public class AuthParameters {
 
     @Column(name="isActive",nullable = false)
-    private boolean isActive=true;
+    private Boolean isActive=true;
 
 
 

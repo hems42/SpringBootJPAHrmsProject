@@ -3,7 +3,7 @@ package cap_software.hrms.entities.contacts;
 
 
 import cap_software.hrms.entities.users.User;
-import cap_software.hrms.entities.utils.DateParametres;
+import cap_software.hrms.entities.utils.DateParameters;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 
 @Data
@@ -26,7 +26,7 @@ public class PersonalInformation implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  int id;
+    private  Integer id;
 
 
     @Column(name="Name", length = 50, nullable = false)
@@ -40,15 +40,14 @@ public class PersonalInformation implements Serializable {
     private String nationalIdentityNumber;
 
     @Column(name="BirhtOfDate",nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date birthOfDate;
+    private LocalDate birthOfDate;
 
 
     @Column(name="Sex",nullable = false,length = 5)
     private String sex;
 
     @Embedded
-    private DateParametres dateParametres=new DateParametres();
+    private DateParameters dateParameters =new DateParameters();
 
 
     @OneToOne(cascade ={CascadeType.PERSIST,CascadeType.MERGE})

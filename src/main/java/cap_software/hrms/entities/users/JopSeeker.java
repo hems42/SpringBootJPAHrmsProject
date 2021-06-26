@@ -3,7 +3,7 @@ package cap_software.hrms.entities.users;
 
 import cap_software.hrms.entities.contacts.PersonalInformation;
 import cap_software.hrms.entities.cv.CurriculumVitae;
-import cap_software.hrms.entities.utils.AuthParametres;
+import cap_software.hrms.entities.utils.AuthParameters;
 import cap_software.hrms.entities.verifications.EmailVerification;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,7 +26,7 @@ public class JopSeeker extends User implements Serializable  {
     private PersonalInformation personalInformation;
 
     @Embedded
-    private AuthParametres authParametres=new AuthParametres();
+    private AuthParameters authParameters =new AuthParameters();
 
     @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     @JoinColumn(name="EmailVeriyId",unique = true)

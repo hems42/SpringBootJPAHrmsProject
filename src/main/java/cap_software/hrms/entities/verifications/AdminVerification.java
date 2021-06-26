@@ -1,6 +1,6 @@
 package cap_software.hrms.entities.verifications;
 
-import cap_software.hrms.entities.utils.DateParametres;
+import cap_software.hrms.entities.utils.DateParameters;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +21,7 @@ public class AdminVerification {
     private int id;
 
     @Embedded
-    private DateParametres dateParametres;
+    private DateParameters dateParameters;
 
     @Column(name="isVerified",updatable = false)
     private  boolean isVerifed=false;
