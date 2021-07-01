@@ -42,17 +42,15 @@ public class JopSeekerService {
         CreatePersonalInformationRequest personalInformationRequest=JopSeekerRequest.getPersonalInformation();
 
         JopSeeker jopSeeker = new JopSeeker();
+        PersonalInformation personalInformation= new PersonalInformation();
 
-        PersonalInformation personalInformation= new PersonalInformation(
-                null,
-                personalInformationRequest.getName(),
-                personalInformationRequest.getSurname(),
-                personalInformationRequest.getNationalIdentityNumber(),
-                personalInformationRequest.getBirthOfDate(),
-                personalInformationRequest.getSex(),
-                new DateParameters(),
-                jopSeeker
-        );
+        personalInformation.setName(personalInformationRequest.getName());
+        personalInformation.setSurname(personalInformationRequest.getSurname());
+        personalInformation.setNationalIdentityNumber(personalInformationRequest.getNationalIdentityNumber());
+        personalInformation.setBirthOfDate(personalInformationRequest.getBirthOfDate());
+        personalInformation.setSex(personalInformationRequest.getSex());
+        personalInformation.setUser(jopSeeker);
+
 
         jopSeeker.setPersonalInformation(personalInformation);
         jopSeeker.setEmail(JopSeekerRequest.getEmail());
@@ -60,7 +58,7 @@ public class JopSeekerService {
 
         jopSeeker.setEmailVerification(EmailVerify.getEmailVerify());
         JopSeeker jopSeeker1=jopSeekerDao.save(jopSeeker);
-       // System.out.println("gelen kulanıcı : "+jopSeeker1);
+
         return new SuccessDataResult<>(convertorJopSeeker.convert(jopSeeker1), "Kullanıcı Eklemesi Başarılı");
     }
 

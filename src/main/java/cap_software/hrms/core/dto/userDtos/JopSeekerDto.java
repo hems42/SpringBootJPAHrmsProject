@@ -35,5 +35,4 @@ public class JopSeekerDto extends UserDto{
 
 
 
-
 }

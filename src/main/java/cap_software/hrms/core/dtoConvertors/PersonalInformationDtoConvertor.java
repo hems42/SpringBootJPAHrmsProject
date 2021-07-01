@@ -13,21 +13,19 @@ public class PersonalInformationDtoConvertor {
         this.convertor = convertor;
     }
 
-    public PersonalInformation convert(PersonalInformationDto from)
-    {
-        return  new PersonalInformation(
+    public PersonalInformation convert(PersonalInformationDto from) {
+        return new PersonalInformation(
                 from.getId(),
                 from.getName(),
                 from.getSurname(),
                 from.getNationalIdentityNumber(),
                 from.getBirthOfDate(),
-                 from.getSex().toString(),
+                from.getSex(),
                 convertor.convert(from.getDateParametersDto()),
                 null);
     }
 
-    public PersonalInformationDto convert(PersonalInformation from)
-    {
+    public PersonalInformationDto convert(PersonalInformation from) {
         return new PersonalInformationDto(
                 from.getId(),
                 from.getName(),

@@ -19,19 +19,18 @@ public class JopSeekerDtoConvertor {
         this.convertorAuth = convertorAuth;
     }
 
-    public JopSeeker  convert(JopSeekerDto from)
-    {
-       return new JopSeeker(
-               convertorPerson.convert(from.getPersonalInformationDto()),
-               convertorAuth.convert(from.getAuthParametersDto()),
-               null,
-               null
-       );
+    public JopSeeker convert(JopSeekerDto from) {
+
+        return new JopSeeker(
+                convertorPerson.convert(from.getPersonalInformationDto()),
+                convertorAuth.convert(from.getAuthParametersDto()),
+                null,
+                null
+        );
     }
 
-    public JopSeekerDto convert(JopSeeker from)
-    {
-        JopSeekerDto jopSeekerDto=new JopSeekerDto(
+    public JopSeekerDto convert(JopSeeker from) {
+        JopSeekerDto jopSeekerDto = new JopSeekerDto(
 
                 convertorAuth.convert(from.getAuthParameters()),
                 convertorPerson.convert(from.getPersonalInformation())

@@ -7,15 +7,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class DateParametersDtoConvertor {
 
-    public DateParameters convert(DateParametersDto from)
-    {
-        return  new DateParameters(
+    public DateParameters convert(DateParametersDto from) {
+        return new DateParameters(
                 from.getCreatedDate(),
                 from.getUpdatedDate());
     }
 
-    public DateParametersDto convert(DateParameters from)
-    {
+    public DateParametersDto convert(DateParameters from) {
         return new DateParametersDto(
                 from.getCreatedDate(),
                 from.getUpdatedDate());
