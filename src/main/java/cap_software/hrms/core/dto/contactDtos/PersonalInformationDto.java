@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-
+import java.time.LocalDateTime;
 
 
 @Data
@@ -42,7 +42,9 @@ public class PersonalInformationDto {
     @NotNull
     private String sex;
 
-    private DateParametersDto dateParametersDto;
+    private LocalDateTime createdDate;
+
+    private LocalDateTime updatedDate;
 
 
 }

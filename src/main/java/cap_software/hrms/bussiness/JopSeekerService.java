@@ -1,6 +1,7 @@
 package cap_software.hrms.bussiness;
 
 
+import cap_software.hrms.core.concstants.Messages;
 import cap_software.hrms.core.dtoConvertors.JopSeekerDtoConvertor;
 import cap_software.hrms.core.dtoRequestes.createRequest.CreateJopSeekerRequest;
 import cap_software.hrms.core.dtoRequestes.createRequest.CreatePersonalInformationRequest;
@@ -12,9 +13,10 @@ import cap_software.hrms.entities.contacts.PersonalInformation;
 import cap_software.hrms.entities.users.JopSeeker;
 import cap_software.hrms.core.dto.contactDtos.PersonalInformationDto;
 import cap_software.hrms.core.dto.userDtos.JopSeekerDto;
-import cap_software.hrms.entities.utils.DateParameters;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -33,38 +35,36 @@ public class JopSeekerService {
     }
 
 
-
-
     public DataResult<JopSeekerDto> createJopSeeker(CreateJopSeekerRequest JopSeekerRequest) {
 
 
-
-        CreatePersonalInformationRequest personalInformationRequest=JopSeekerRequest.getPersonalInformation();
+        CreatePersonalInformationRequest personalInformationRequest = JopSeekerRequest.getPersonalInformation();
 
         JopSeeker jopSeeker = new JopSeeker();
-        PersonalInformation personalInformation= new PersonalInformation();
+        PersonalInformation personalInformation = new PersonalInformation();
 
         personalInformation.setName(personalInformationRequest.getName());
         personalInformation.setSurname(personalInformationRequest.getSurname());
         personalInformation.setNationalIdentityNumber(personalInformationRequest.getNationalIdentityNumber());
         personalInformation.setBirthOfDate(personalInformationRequest.getBirthOfDate());
         personalInformation.setSex(personalInformationRequest.getSex());
+        personalInformation.setCreatedDate(LocalDateTime.now());
         personalInformation.setUser(jopSeeker);
 
 
         jopSeeker.setPersonalInformation(personalInformation);
         jopSeeker.setEmail(JopSeekerRequest.getEmail());
         jopSeeker.setPassword(JopSeekerRequest.getPassword());
-
+        jopSeeker.setCreatedDate(LocalDateTime.now());
+        jopSeeker.setIsActive(true);
         jopSeeker.setEmailVerification(EmailVerify.getEmailVerify());
-        JopSeeker jopSeeker1=jopSeekerDao.save(jopSeeker);
 
-        return new SuccessDataResult<>(convertorJopSeeker.convert(jopSeeker1), "Kullanıcı Eklemesi Başarılı");
+        return new SuccessDataResult<>(convertorJopSeeker.convert(jopSeekerDao.save(jopSeeker)), Messages.KULLANICI_EKLEME_BASARILI);
     }
 
 
-    public DataResult<JopSeeker> getJopSeekerById(int id) {
-        return new SuccessDataResult<>(jopSeekerDao.findById(id).get(), "Kullanıcı Başarıyla Getirildi "+id);
+    public DataResult<JopSeeker> getJopSeekerById(String  id) {
+        return new SuccessDataResult<>(jopSeekerDao.findById(id).get(), "Kullanıcı Başarıyla Getirildi " + id);
     }
 
 
@@ -73,7 +73,7 @@ public class JopSeekerService {
     }
 
 
-    public DataResult<JopSeekerDto> deleteJopSeekerById(int id) {
+    public DataResult<JopSeekerDto> deleteJopSeekerById(String  id) {
         JopSeeker jopSeeker = jopSeekerDao.findById(id).get();
         jopSeekerDao.deleteById(id);
         return new SuccessDataResult<>(convertToJopSeekerDto(jopSeeker), "Kullanıcı Başarıyla Silindi");
@@ -93,7 +93,7 @@ public class JopSeekerService {
 
         JopSeeker jopSeeker = jopSeekerDao.findById(jopSeekerDto.getId()).get();
 
-        PersonalInformation information = convertToPersonalInformation(jopSeekerDto.getPersonalInformationDto());
+        PersonalInformation information = convertToPersonalInformation(jopSeekerDto.getPersonalInformation());
         information.setUser(jopSeeker);
         jopSeeker.setPersonalInformation(information);
 
@@ -104,7 +104,7 @@ public class JopSeekerService {
     }
 
 
-    public DataResult<PersonalInformationDto> updateJopSeeker(int id, PersonalInformationDto personalInformationDto) {
+    public DataResult<PersonalInformationDto> updateJopSeeker(String  id, PersonalInformationDto personalInformationDto) {
 
         JopSeeker jopSeeker = getJopSeeker(id);
 
@@ -119,7 +119,7 @@ public class JopSeekerService {
 
     private JopSeeker convertToJobSeeker(JopSeekerDto jopSeekerDto) {
         JopSeeker jopSeeker = modelMapper.map(jopSeekerDto, JopSeeker.class);
-        PersonalInformation information = modelMapper.map(jopSeekerDto.getPersonalInformationDto(), PersonalInformation.class);
+        PersonalInformation information = modelMapper.map(jopSeekerDto.getPersonalInformation(), PersonalInformation.class);
         information.setUser(jopSeeker);
         jopSeeker.setPersonalInformation(information);
         return jopSeeker;
@@ -129,7 +129,7 @@ public class JopSeekerService {
     private JopSeekerDto convertToJopSeekerDto(JopSeeker jopSeeker) {
         JopSeekerDto resJopSeekerDto = modelMapper.map(jopSeeker, JopSeekerDto.class);
         PersonalInformationDto resInformationDto = modelMapper.map(jopSeeker.getPersonalInformation(), PersonalInformationDto.class);
-        resJopSeekerDto.setPersonalInformationDto(resInformationDto);
+        resJopSeekerDto.setPersonalInformation(resInformationDto);
         return resJopSeekerDto;
     }
 
@@ -144,7 +144,7 @@ public class JopSeekerService {
         return resInformationDto;
     }
 
-    private JopSeeker getJopSeeker(int id) {
+    private JopSeeker getJopSeeker(String id) {
         return jopSeekerDao.getById(id);
     }
 

@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
-public interface JopSeekerDao extends JpaRepository<JopSeeker,Integer> {
+public interface JopSeekerDao extends JpaRepository<JopSeeker,String> {
 
     @Transactional
     @Modifying

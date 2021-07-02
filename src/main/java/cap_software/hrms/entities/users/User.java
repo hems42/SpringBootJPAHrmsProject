@@ -4,8 +4,10 @@ package cap_software.hrms.entities.users;
 import cap_software.hrms.entities.utils.BaseDateEntity;
 import cap_software.hrms.entities.utils.DateParameters;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Random;
 
 
@@ -24,9 +26,11 @@ public abstract class User {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "UserId")
-    private int id;
+    private String  id;
+
 
 
     @Column(name = "UserNumber", nullable = false, length = 40, updatable = false)
@@ -41,8 +45,16 @@ public abstract class User {
     private String password;
 
 
-    @Embedded
-    private DateParameters dateParameters = new DateParameters();
+
+
+    @Column(name = "CreatedDate",updatable = false)
+    private LocalDateTime createdDate;
+
+
+
+    @Column(name = "UpdatedDate",insertable = false)
+    private LocalDateTime updatedDate;
+
 
 
     public User() {

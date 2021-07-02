@@ -25,8 +25,8 @@ public class JopSeeker extends User implements Serializable  {
     @JoinColumn(name = "PersonalInformationId",unique = true,nullable = false)
     private PersonalInformation personalInformation;
 
-    @Embedded
-    private AuthParameters authParameters =new AuthParameters();
+    @Column(name="isActive",nullable = false)
+    private Boolean isActive;
 
     @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     @JoinColumn(name="EmailVeriyId",unique = true)

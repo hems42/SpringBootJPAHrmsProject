@@ -6,12 +6,14 @@ import cap_software.hrms.core.dto.contactDtos.PersonalInformationDto;
 import cap_software.hrms.core.dto.utilDtos.AuthParametersDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class JopSeekerDto extends UserDto{
 
                     /*
@@ -28,9 +30,9 @@ public class JopSeekerDto extends UserDto{
                 Kayıdın gerçekleşmesi için e-posta doğrulaması gerekir.
                 */
 
-    private AuthParametersDto authParametersDto;
+    private Boolean isActive=true;
 
-    private PersonalInformationDto personalInformationDto;
+    private PersonalInformationDto personalInformation;
 
 
 

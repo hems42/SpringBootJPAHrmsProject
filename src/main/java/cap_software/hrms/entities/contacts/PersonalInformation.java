@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Data
@@ -46,8 +47,9 @@ public class PersonalInformation implements Serializable {
     private String sex;
 
 
-    @Embedded
-    private DateParameters dateParameters = new DateParameters();
+    private LocalDateTime createdDate;
+
+    private LocalDateTime updatedDate;
 
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})

@@ -10,36 +10,44 @@ public class JopSeekerDtoConvertor {
 
     private final DateParametersDtoConvertor convertorDate;
     private final PersonalInformationDtoConvertor convertorPerson;
-    private final AuthParametersDtoConvertor convertorAuth;
 
 
-    public JopSeekerDtoConvertor(DateParametersDtoConvertor convertorDate, PersonalInformationDtoConvertor convertorPerson, AuthParametersDtoConvertor convertorAuth) {
+    public JopSeekerDtoConvertor(DateParametersDtoConvertor convertorDate,
+                                 PersonalInformationDtoConvertor convertorPerson) {
         this.convertorDate = convertorDate;
         this.convertorPerson = convertorPerson;
-        this.convertorAuth = convertorAuth;
     }
 
     public JopSeeker convert(JopSeekerDto from) {
 
-        return new JopSeeker(
-                convertorPerson.convert(from.getPersonalInformationDto()),
-                convertorAuth.convert(from.getAuthParametersDto()),
+        JopSeeker jopSeeker = new JopSeeker(
+                convertorPerson.convert(from.getPersonalInformation()),
+                from.getIsActive(),
                 null,
                 null
         );
+
+        jopSeeker.setCreatedDate(from.getCreatedDate());
+        if (from.getUpdatedDate() != null) {
+            jopSeeker.setUpdatedDate(from.getUpdatedDate());
+        }
+
+        return jopSeeker;
     }
 
     public JopSeekerDto convert(JopSeeker from) {
         JopSeekerDto jopSeekerDto = new JopSeekerDto(
-
-                convertorAuth.convert(from.getAuthParameters()),
+                from.getIsActive(),
                 convertorPerson.convert(from.getPersonalInformation())
         );
 
         jopSeekerDto.setEmail(from.getEmail());
         jopSeekerDto.setId(from.getId());
         jopSeekerDto.setPassword(from.getPassword());
-        jopSeekerDto.setDateParametersDto(convertorDate.convert(from.getDateParameters()));
+        jopSeekerDto.setCreatedDate(from.getCreatedDate());
+        if (from.getUpdatedDate() != null) {
+            jopSeekerDto.setUpdatedDate(from.getUpdatedDate());
+        }
         return jopSeekerDto;
     }
 }

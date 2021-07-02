@@ -13,26 +13,44 @@ public class PersonalInformationDtoConvertor {
         this.convertor = convertor;
     }
 
-    public PersonalInformation convert(PersonalInformationDto from) {
-        return new PersonalInformation(
+    public PersonalInformation convert(PersonalInformationDto from)
+    {
+        PersonalInformation personalInformation=new PersonalInformation(
                 from.getId(),
                 from.getName(),
                 from.getSurname(),
                 from.getNationalIdentityNumber(),
                 from.getBirthOfDate(),
                 from.getSex(),
-                convertor.convert(from.getDateParametersDto()),
+                from.getCreatedDate(),
+                null,
                 null);
+
+        if(from.getUpdatedDate()!=null)
+        {
+            personalInformation.setUpdatedDate(from.getUpdatedDate());
+        }
+
+        return personalInformation;
     }
 
     public PersonalInformationDto convert(PersonalInformation from) {
-        return new PersonalInformationDto(
+
+        PersonalInformationDto personalInformationDto=new PersonalInformationDto(
                 from.getId(),
                 from.getName(),
                 from.getSurname(),
                 from.getNationalIdentityNumber(),
                 from.getBirthOfDate(),
                 from.getSex(),
-                convertor.convert(from.getDateParameters()));
+                from.getCreatedDate(),
+                null);
+
+        if(from.getUpdatedDate()!=null)
+        {
+            personalInformationDto.setUpdatedDate(from.getUpdatedDate());
+        }
+
+        return personalInformationDto;
     }
 }
