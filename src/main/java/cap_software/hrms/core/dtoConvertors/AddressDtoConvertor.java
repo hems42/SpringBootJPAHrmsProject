@@ -8,29 +8,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class AddressDtoConvertor {
 
-    private final DateParametersDtoConvertor convertor;
 
-    public AddressDtoConvertor(DateParametersDtoConvertor convertor) {
-        this.convertor = convertor;
-    }
-
-    public Address convert(AddressDto from)
-    {
+    public Address convert(AddressDto from) {
         return new Address(
                 from.getId(),
                 from.getCity(),
                 from.getDistrict(),
-                from.getStreet(),
-                convertor.convert(from.getDateParametersDto()));
+                from.getStreet());
     }
 
-    public AddressDto convert(Address from)
-    {
+    public AddressDto convert(Address from) {
         return new AddressDto(
                 from.getId(),
                 from.getCity(),
                 from.getDistrict(),
-                from.getStreet(),
-                convertor.convert(from.getDateParameters()));
+                from.getStreet());
     }
 }

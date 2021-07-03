@@ -3,7 +3,6 @@ package cap_software.hrms.entities.users;
 
 import cap_software.hrms.entities.contacts.PersonalInformation;
 import cap_software.hrms.entities.cv.CurriculumVitae;
-import cap_software.hrms.entities.utils.AuthParameters;
 import cap_software.hrms.entities.verifications.EmailVerification;
 import lombok.AllArgsConstructor;
 import lombok.Data;

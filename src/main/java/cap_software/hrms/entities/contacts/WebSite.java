@@ -19,8 +19,6 @@ public class WebSite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Embedded
-    private DateParameters dateParameters;
 
     @Column(name="WebSite",length = 50,nullable = false,unique = true)
     private String webSite;

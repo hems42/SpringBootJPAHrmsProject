@@ -8,13 +8,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class JopSeekerDtoConvertor {
 
-    private final DateParametersDtoConvertor convertorDate;
+
     private final PersonalInformationDtoConvertor convertorPerson;
 
 
-    public JopSeekerDtoConvertor(DateParametersDtoConvertor convertorDate,
-                                 PersonalInformationDtoConvertor convertorPerson) {
-        this.convertorDate = convertorDate;
+    public JopSeekerDtoConvertor(PersonalInformationDtoConvertor convertorPerson)
+    {
         this.convertorPerson = convertorPerson;
     }
 

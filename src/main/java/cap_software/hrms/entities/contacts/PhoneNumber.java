@@ -28,8 +28,7 @@ public class PhoneNumber implements Serializable {
     @Column(name = "PhoneNumber", nullable = false, length = 20, unique = true)
     private String phoneNumber;
 
-    @Embedded
-    private DateParameters dateParameters;
+
 }
 
 

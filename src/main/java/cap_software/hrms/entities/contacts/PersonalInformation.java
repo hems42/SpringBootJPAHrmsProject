@@ -46,9 +46,10 @@ public class PersonalInformation implements Serializable {
     @Column(name = "Sex", nullable = false, length = 5)
     private String sex;
 
-
+    @Column(name = "CreatedDate",updatable = false)
     private LocalDateTime createdDate;
 
+    @Column(name = "UpdatedDate",insertable = false)
     private LocalDateTime updatedDate;
 
 

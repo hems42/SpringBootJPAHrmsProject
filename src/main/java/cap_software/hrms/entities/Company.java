@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +32,11 @@ public class Company {
     @Column(name = "CompanyDetails")
     private String companyDetails;
 
-    @Embedded
-    DateParameters dataParametres;
+    @Column(name = "CreatedDate",updatable = false)
+    private LocalDateTime createdDate;
+
+    @Column(name = "UpdatedDate",insertable = false)
+    private LocalDateTime updatedDate;
 
 
 

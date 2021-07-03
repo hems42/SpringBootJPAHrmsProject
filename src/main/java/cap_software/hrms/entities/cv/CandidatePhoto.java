@@ -1,5 +1,6 @@
 package cap_software.hrms.entities.cv;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -34,16 +35,8 @@ public class CandidatePhoto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="Id")
 	private int id;
-	
-	@CreationTimestamp
-	@Column(name="AddedDate",nullable = false, updatable = false,insertable = true)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date addedDate;
-	
-	@CreationTimestamp
-	@Column(name="UpdatedDate",updatable = true,insertable =false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date updatedDate;
+
+
 	
 	
 	@ManyToOne

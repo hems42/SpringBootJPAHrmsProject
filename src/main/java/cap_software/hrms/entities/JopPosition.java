@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -33,8 +34,11 @@ public class JopPosition {
             inverseJoinColumns = @JoinColumn(name = "CategoryId",referencedColumnName = "id"))
    private List<Category> categoryList;
 
-    @Embedded
-    private DateParameters dateParameters;
+    @Column(name = "CreatedDate",updatable = false)
+    private LocalDateTime createdDate;
+
+    @Column(name = "UpdatedDate",insertable = false)
+    private LocalDateTime updatedDate;
 
 
 

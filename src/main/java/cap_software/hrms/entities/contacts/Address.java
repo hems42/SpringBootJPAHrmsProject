@@ -26,7 +26,6 @@ public class Address {
     private String street;
 
 
-    @Embedded
-    private DateParameters dateParameters;
+
 }
 

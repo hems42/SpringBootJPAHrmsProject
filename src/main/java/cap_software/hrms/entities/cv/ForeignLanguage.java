@@ -34,15 +34,7 @@ public class ForeignLanguage {
 	@Column(name="Id")
 	private int id;
 	
-	@CreationTimestamp
-	@Column(name="AddedDate",nullable = false, updatable = false,insertable = true)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date addedDate;
-	
-	@CreationTimestamp
-	@Column(name="UpdatedDate",updatable = true,insertable =false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date updatedDate;
+
 	
 	@ManyToOne
 	@JoinColumn(name="CvId")

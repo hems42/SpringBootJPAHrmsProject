@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -30,9 +31,11 @@ public class JopAdvertisement {
     private Date applicationDeadline;
 
 
-    @Embedded
-    @AttributeOverride(name = "addedDate",column = @Column(name = "PostDate"))
-    private DateParameters dateParameters;
+    @Column(name = "CreatedDate",updatable = false)
+    private LocalDateTime createdDate;
+
+    @Column(name = "UpdatedDate",insertable = false)
+    private LocalDateTime updatedDate;
 
 
 

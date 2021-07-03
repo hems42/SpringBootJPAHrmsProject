@@ -7,11 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PersonalInformationDtoConvertor {
 
-    private final DateParametersDtoConvertor convertor;
 
-    public PersonalInformationDtoConvertor(DateParametersDtoConvertor convertor) {
-        this.convertor = convertor;
-    }
 
     public PersonalInformation convert(PersonalInformationDto from)
     {

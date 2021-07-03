@@ -24,8 +24,7 @@ public class Category {
     private String categoryName;
 
 
-    @Embedded
-    private DateParameters dateParameters;
+
 
 
     @JsonIgnore
