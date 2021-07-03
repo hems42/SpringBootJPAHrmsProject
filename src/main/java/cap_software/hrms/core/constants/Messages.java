@@ -1,4 +1,4 @@
-package cap_software.hrms.core.concstants;
+package cap_software.hrms.core.constants;
 
 public class Messages {
 

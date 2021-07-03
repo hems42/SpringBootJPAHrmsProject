@@ -1,7 +1,7 @@
 package cap_software.hrms.bussiness;
 
 
-import cap_software.hrms.core.concstants.Messages;
+import cap_software.hrms.core.constants.Messages;
 import cap_software.hrms.core.dtoConvertors.JopSeekerDtoConvertor;
 import cap_software.hrms.core.dtoRequestes.createRequest.CreateJopSeekerRequest;
 import cap_software.hrms.core.dtoRequestes.createRequest.CreatePersonalInformationRequest;
