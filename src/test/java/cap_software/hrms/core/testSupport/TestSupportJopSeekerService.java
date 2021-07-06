@@ -1,11 +1,14 @@
-package cap_software.hrms.bussiness;
+package cap_software.hrms.core.testSupport;
 
 import cap_software.hrms.core.dto.contactDtos.PersonalInformationDto;
 import cap_software.hrms.core.dto.userDtos.JopSeekerDto;
 import cap_software.hrms.core.dtoRequestes.createRequest.CreateJopSeekerRequest;
 import cap_software.hrms.core.dtoRequestes.createRequest.CreatePersonalInformationRequest;
+import cap_software.hrms.entities.contacts.PersonalInformation;
+import cap_software.hrms.entities.users.JopSeeker;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class TestSupportJopSeekerService {
 
@@ -53,5 +56,36 @@ public class TestSupportJopSeekerService {
         jopSeekerDto.setPassword("password");
         jopSeekerDto.setId("id");
         return jopSeekerDto;
+    }
+
+    public static PersonalInformation generatePersonalInformation()
+    {
+        return new PersonalInformation(
+                0,
+                "ALİ",
+                "YILMAZ",
+                "00000000000",
+                LocalDate.of(1991,8,16),
+                "ERKEK",
+                LocalDateTime.now(),
+                LocalDateTime.now(),
+                null
+        );
+    }
+
+    public static JopSeeker generateJopSeeker()
+    {
+        JopSeeker jopSeeker= new JopSeeker();
+        PersonalInformation  personalInformation=generatePersonalInformation();
+
+
+        personalInformation.setUser(jopSeeker);
+        jopSeeker.setIsActive(true);
+        jopSeeker.setPersonalInformation(personalInformation);
+        jopSeeker.setEmail("deneme@gmail.com");
+        jopSeeker.setPassword("password");
+        jopSeeker.setId("id");
+        jopSeeker.setCreatedDate(LocalDateTime.now());
+        return jopSeeker;
     }
 }

@@ -38,5 +38,9 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(AlReadyExistUserException.class)
+    public ResponseEntity<?> alReadyExistUserExceptionHandler(AlReadyExistUserException exception)  {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+    }
 
 }
