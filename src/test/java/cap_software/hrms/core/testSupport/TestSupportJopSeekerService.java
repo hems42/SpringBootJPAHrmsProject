@@ -67,8 +67,8 @@ public class TestSupportJopSeekerService {
                 "00000000000",
                 LocalDate.of(1991,8,16),
                 "ERKEK",
-                LocalDateTime.now(),
-                LocalDateTime.now(),
+                null,
+                null,
                 null
         );
     }
@@ -85,7 +85,6 @@ public class TestSupportJopSeekerService {
         jopSeeker.setEmail("deneme@gmail.com");
         jopSeeker.setPassword("password");
         jopSeeker.setId("id");
-        jopSeeker.setCreatedDate(LocalDateTime.now());
         return jopSeeker;
     }
 }

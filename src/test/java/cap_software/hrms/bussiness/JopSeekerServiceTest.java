@@ -1,12 +1,10 @@
 package cap_software.hrms.bussiness;
 
-import cap_software.hrms.core.constants.Messages;
+
 import cap_software.hrms.core.dto.userDtos.JopSeekerDto;
 import cap_software.hrms.core.dtoConvertors.JopSeekerDtoConvertor;
 import cap_software.hrms.core.dtoRequestes.createRequest.CreateJopSeekerRequest;
 import cap_software.hrms.core.testSupport.TestSupportJopSeekerService;
-import cap_software.hrms.core.utilities.results.DataResult;
-import cap_software.hrms.core.utilities.results.SuccessDataResult;
 import cap_software.hrms.dataAccess.abstracts.JopSeekerDao;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,46 +15,30 @@ import static org.mockito.Mockito.*;
 class JopSeekerServiceTest extends TestSupportJopSeekerService {
 
 
-    private  JopSeekerDao jopSeekerDao;
-    private  JopSeekerDtoConvertor convertorJopSeeker;
-    private JopSeekerService  jopSeekerService;
+    private JopSeekerDao jopSeekerDao;
+    private JopSeekerDtoConvertor convertorJopSeeker;
+    private JopSeekerService jopSeekerService;
 
     @BeforeEach
     void setUp() {
-        jopSeekerDao= mock(JopSeekerDao.class);
-        convertorJopSeeker=mock(JopSeekerDtoConvertor.class);
-        jopSeekerService=new JopSeekerService(jopSeekerDao,convertorJopSeeker);
+        jopSeekerDao = mock(JopSeekerDao.class);
+        convertorJopSeeker = mock(JopSeekerDtoConvertor.class);
+        jopSeekerService = new JopSeekerService(jopSeekerDao, convertorJopSeeker);
     }
 
     @Test
     void testCreateJopSeeker_whenCreateJopSeeker_itShouldReturn_SuccessDataResultJopSeekerDto() {
 
 
+        CreateJopSeekerRequest jopSeekerRequest = generateCreateJopSeekerRequest();
 
-        CreateJopSeekerRequest jopSeekerRequest=generateCreateJopSeekerRequest();
+        JopSeekerDto jopSeekerDto = generateJopSeekerDto();
 
-        JopSeekerDto jopSeekerDto=generateJopSeekerDto();
+        when(jopSeekerService.createJopSeeker(jopSeekerRequest).getData()).thenReturn(jopSeekerDto);
 
-        DataResult<JopSeekerDto>  successDateResult=new SuccessDataResult<>(jopSeekerDto, Messages.KULLANICI_EKLEME_BASARILI);
+        JopSeekerDto jopSeekerDtoResult = jopSeekerService.createJopSeeker(jopSeekerRequest).getData();
 
-        DataResult<JopSeekerDto> jopSeekerDtoResult=jopSeekerService.createJopSeeker(jopSeekerRequest);
-
-
-
-
-
-
-
-
-
-
-
-
-        when(jopSeekerService.createJopSeeker(jopSeekerRequest)).thenReturn(jopSeekerDtoResult);
-
-
-
-        assertEquals(jopSeekerDtoResult,successDateResult);
+        assertEquals(jopSeekerDtoResult, jopSeekerDto);
     }
 
     @Test

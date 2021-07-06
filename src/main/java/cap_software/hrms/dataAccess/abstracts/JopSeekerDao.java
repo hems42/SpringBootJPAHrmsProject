@@ -9,12 +9,16 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.Optional;
+
 public interface JopSeekerDao extends JpaRepository<JopSeeker,String> {
 
     @Transactional
     @Modifying
     @Query(value = "update PersonalInformation  j set j:personalInformation where j.id=:id",nativeQuery = true)
     void updatePersonalInformation(@Param(value = "id") int id,@RequestBody PersonalInformation personalInformation);
+
+    Optional<JopSeeker> getJopSeekerByEmail(String email);
 
   /*
 

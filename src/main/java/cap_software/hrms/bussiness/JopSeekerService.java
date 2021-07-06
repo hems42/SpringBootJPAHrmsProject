@@ -7,6 +7,7 @@ import cap_software.hrms.core.dtoRequestes.createRequest.CreateJopSeekerRequest;
 import cap_software.hrms.core.dtoRequestes.createRequest.CreatePersonalInformationRequest;
 import cap_software.hrms.core.dtoRequestes.updateRequest.UpdateJopSeekerRequest;
 import cap_software.hrms.core.dtoRequestes.updateRequest.UpdatePersonalInformationRequest;
+import cap_software.hrms.core.exceptions.AlReadyExistUserException;
 import cap_software.hrms.core.exceptions.UserNotFoundException;
 import cap_software.hrms.core.utilities.results.DataResult;
 import cap_software.hrms.core.utilities.results.SuccessDataResult;
@@ -35,31 +36,37 @@ public class JopSeekerService {
     }
 
 
-    public DataResult<JopSeekerDto> createJopSeeker(CreateJopSeekerRequest JopSeekerRequest) {
+    public DataResult<JopSeekerDto> createJopSeeker(CreateJopSeekerRequest jopSeekerRequest) {
+
+        if (isAlReadyExistJopSeeker(jopSeekerRequest.getEmail()) == null) {
+            CreatePersonalInformationRequest personalInformationRequest = jopSeekerRequest.getPersonalInformation();
+
+            JopSeeker jopSeeker = new JopSeeker();
+            PersonalInformation personalInformation = new PersonalInformation();
+
+            personalInformation.setName(personalInformationRequest.getName());
+            personalInformation.setSurname(personalInformationRequest.getSurname());
+            personalInformation.setNationalIdentityNumber(personalInformationRequest.getNationalIdentityNumber());
+            personalInformation.setBirthOfDate(personalInformationRequest.getBirthOfDate());
+            personalInformation.setSex(personalInformationRequest.getSex());
+            personalInformation.setCreatedDate(LocalDateTime.now());
+            personalInformation.setUser(jopSeeker);
 
 
-        CreatePersonalInformationRequest personalInformationRequest = JopSeekerRequest.getPersonalInformation();
+            jopSeeker.setPersonalInformation(personalInformation);
+            jopSeeker.setEmail(jopSeekerRequest.getEmail());
+            jopSeeker.setPassword(jopSeekerRequest.getPassword());
+            jopSeeker.setCreatedDate(LocalDateTime.now());
+            jopSeeker.setIsActive(true);
+            jopSeeker.setEmailVerification(EmailVerify.getEmailVerify());
 
-        JopSeeker jopSeeker = new JopSeeker();
-        PersonalInformation personalInformation = new PersonalInformation();
+            return new SuccessDataResult<>(convertorJopSeeker.convert(jopSeekerDao.save(jopSeeker)), Messages.KULLANICI_EKLEME_BASARILI);
+        } else {
+            return new SuccessDataResult<>(new JopSeekerDto(), Messages.KULLANICI_DAHA_ONCE_EKLENMİS);
 
-        personalInformation.setName(personalInformationRequest.getName());
-        personalInformation.setSurname(personalInformationRequest.getSurname());
-        personalInformation.setNationalIdentityNumber(personalInformationRequest.getNationalIdentityNumber());
-        personalInformation.setBirthOfDate(personalInformationRequest.getBirthOfDate());
-        personalInformation.setSex(personalInformationRequest.getSex());
-        personalInformation.setCreatedDate(LocalDateTime.now());
-        personalInformation.setUser(jopSeeker);
+        }
 
 
-        jopSeeker.setPersonalInformation(personalInformation);
-        jopSeeker.setEmail(JopSeekerRequest.getEmail());
-        jopSeeker.setPassword(JopSeekerRequest.getPassword());
-        jopSeeker.setCreatedDate(LocalDateTime.now());
-        jopSeeker.setIsActive(true);
-        jopSeeker.setEmailVerification(EmailVerify.getEmailVerify());
-
-        return new SuccessDataResult<>(convertorJopSeeker.convert(jopSeekerDao.save(jopSeeker)), Messages.KULLANICI_EKLEME_BASARILI);
     }
 
 
@@ -76,37 +83,41 @@ public class JopSeekerService {
 
 
     public DataResult<Boolean> deleteJopSeekerById(String id) {
-        JopSeeker jopSeeker =getJopSeeker(id);
+        JopSeeker jopSeeker = getJopSeeker(id);
         jopSeekerDao.delete(jopSeeker);
-        return new SuccessDataResult<>(true,Messages.KULLANICI_SİLİNDİ);
+        return new SuccessDataResult<>(true, Messages.KULLANICI_SİLİNDİ);
     }
 
 
     public DataResult<JopSeekerDto> updateJopSeekerById(String id,
                                                         UpdateJopSeekerRequest jopSeekerRequest) {
 
-        UpdatePersonalInformationRequest informationRequest = jopSeekerRequest.getPersonalInformationRequest();
+        if (isAlReadyExistJopSeeker(jopSeekerRequest.getEmail()) != null) {
+            UpdatePersonalInformationRequest informationRequest = jopSeekerRequest.getPersonalInformationRequest();
 
-        JopSeeker jopSeeker = getJopSeeker(id);
+            JopSeeker jopSeeker = getJopSeeker(id);
 
-        jopSeeker.setEmail(jopSeekerRequest.getEmail());
-        jopSeeker.setPassword(jopSeekerRequest.getPassword());
-        jopSeeker.setUpdatedDate(LocalDateTime.now());
+            jopSeeker.setEmail(jopSeekerRequest.getEmail());
+            jopSeeker.setPassword(jopSeekerRequest.getPassword());
+            jopSeeker.setUpdatedDate(LocalDateTime.now());
 
-        PersonalInformation information = jopSeeker.getPersonalInformation();
+            PersonalInformation information = jopSeeker.getPersonalInformation();
 
-        information.setUpdatedDate(LocalDateTime.now());
-        information.setSex(informationRequest.getSex());
-        information.setName(informationRequest.getName());
-        information.setSurname(informationRequest.getSurname());
-        information.setBirthOfDate(informationRequest.getBirthOfDate());
-        information.setNationalIdentityNumber(informationRequest.getNationalIdentityNumber());
+            information.setUpdatedDate(LocalDateTime.now());
+            information.setSex(informationRequest.getSex());
+            information.setName(informationRequest.getName());
+            information.setSurname(informationRequest.getSurname());
+            information.setBirthOfDate(informationRequest.getBirthOfDate());
+            information.setNationalIdentityNumber(informationRequest.getNationalIdentityNumber());
 
-        jopSeeker.setPersonalInformation(information);
+            jopSeeker.setPersonalInformation(information);
+            return new SuccessDataResult<>(convertorJopSeeker.convert(jopSeekerDao.save(jopSeeker)),
+                    Messages.KULLANICI_GÜNCELLENDİ + " " + id);
+        } else {
+            return new SuccessDataResult<>(new JopSeekerDto());
+        }
 
 
-        return new SuccessDataResult<>(convertorJopSeeker.convert(jopSeekerDao.save(jopSeeker)),
-                Messages.KULLANICI_GÜNCELLENDİ + " " + id);
     }
 
 
@@ -146,6 +157,16 @@ public class JopSeekerService {
 
     private JopSeeker getJopSeeker(String id) {
         return jopSeekerDao.findById(id).orElseThrow(() -> new UserNotFoundException(Messages.KULLANICI_BULUNAMADI));
+    }
+
+    private JopSeeker isAlReadyExistJopSeeker(String email) {
+        JopSeeker jopSeeker = jopSeekerDao.getJopSeekerByEmail(email).get();
+
+        if (jopSeeker != null) {
+            return jopSeeker;
+        } else {
+         throw  new AlReadyExistUserException(email + " " + Messages.KULLANICI_DAHA_ONCE_EKLENMİS);
+        }
     }
 
 }
