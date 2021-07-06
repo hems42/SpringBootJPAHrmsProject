@@ -10,5 +10,5 @@ RUN ./mvnw package
 
 FROM openjdk:11
 WORKDIR account-api
-COPY --from=build target/*.jar account-api.jar
+COPY --from=build target/*.jar hrms.jar
 ENTRYPOINT ["java", "-jar", "hrms.jar"]

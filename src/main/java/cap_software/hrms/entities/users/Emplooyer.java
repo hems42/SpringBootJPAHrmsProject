@@ -7,6 +7,7 @@ import cap_software.hrms.entities.verifications.EmailVerification;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name="Emplooyers")
 @PrimaryKeyJoinColumn(name="UserId", referencedColumnName="UserId")
