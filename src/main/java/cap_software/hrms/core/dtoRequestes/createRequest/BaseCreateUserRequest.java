@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class BaseCreateUserRequest {
 
+
     @NotNull
     @NotBlank
     @Email

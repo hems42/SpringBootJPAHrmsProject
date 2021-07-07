@@ -18,7 +18,9 @@ public interface JopSeekerDao extends JpaRepository<JopSeeker,String> {
     @Query(value = "update PersonalInformation  j set j:personalInformation where j.id=:id",nativeQuery = true)
     void updatePersonalInformation(@Param(value = "id") int id,@RequestBody PersonalInformation personalInformation);
 
-    Optional<JopSeeker> getJopSeekerByEmail(String email);
+    JopSeeker getJopSeekerByEmail(String email);
+
+    JopSeeker getJopSeekerByPersonalInformation_NationalIdentityNumber(String nationIdentityNumber);
 
   /*
 
