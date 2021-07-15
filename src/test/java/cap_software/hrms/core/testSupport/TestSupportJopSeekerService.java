@@ -8,7 +8,6 @@ import cap_software.hrms.entities.contacts.PersonalInformation;
 import cap_software.hrms.entities.users.JopSeeker;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class TestSupportJopSeekerService {
 

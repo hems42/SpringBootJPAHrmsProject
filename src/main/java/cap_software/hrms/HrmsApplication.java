@@ -21,6 +21,7 @@ import java.time.LocalDate;
 @SpringBootApplication
 @EnableSwagger2
 public class HrmsApplication implements CommandLineRunner {
+
     @Autowired
     JopSeekerDao jopSeekerDao;
 

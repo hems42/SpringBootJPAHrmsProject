@@ -38,7 +38,6 @@ class JopSeekerServiceTest extends TestSupportJopSeekerService {
 
         JopSeekerDto jopSeekerDtoResult = jopSeekerService.createJopSeeker(jopSeekerRequest).getData();
 
-        verify(convertorJopSeeker.convert(jopSeekerDto));
         assertEquals(jopSeekerDtoResult, jopSeekerDto);
     }
 

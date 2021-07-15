@@ -1,8 +1,7 @@
 package cap_software.hrms.entities.users;
 
 
-import cap_software.hrms.entities.utils.BaseDateEntity;
-import cap_software.hrms.entities.utils.DateParameters;
+
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
